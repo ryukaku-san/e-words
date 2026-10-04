@@ -196,16 +196,19 @@ export const StudySession: React.FC<StudySessionProps> = ({
           </span>
 
           <div className="flex items-center gap-1.5">
-            <button
-              onClick={(e) => handlePlayVoice(currentItem.term, e)}
-              className={`p-2 rounded-lg bg-[var(--bg-muted)] hover:bg-[var(--primary-light)] text-[var(--text-muted)] hover:text-[var(--primary)] transition ${
-                isPlayingAudio ? 'animate-pulse text-[var(--primary)]' : ''
-              }`}
-              title="英語を発音"
-              aria-label="発音を聞く"
-            >
-              <Volume2 className="w-5 h-5" />
-            </button>
+            {/* 英→日モードでは表面で音声再生可能、日→英モードではネタバレ防止のため回答オープン時に表示 */}
+            {direction === 'en-ja' && (
+              <button
+                onClick={(e) => handlePlayVoice(currentItem.term, e)}
+                className={`p-2 rounded-lg bg-[var(--bg-muted)] hover:bg-[var(--primary-light)] text-[var(--text-muted)] hover:text-[var(--primary)] transition ${
+                  isPlayingAudio ? 'animate-pulse text-[var(--primary)]' : ''
+                }`}
+                title="英語を発音"
+                aria-label="発音を聞く"
+              >
+                <Volume2 className="w-5 h-5" />
+              </button>
+            )}
 
             <button
               onClick={(e) => {
@@ -221,10 +224,12 @@ export const StudySession: React.FC<StudySessionProps> = ({
           </div>
         </div>
 
-        {/* 表面表示 */}
+        {/* 表面表示（問題） */}
         <div className="my-auto py-3 text-center">
           {direction === 'en-ja' ? (
+            /* 英 → 日 モード：英語が問題 */
             <div>
+              <div className="text-xs text-[var(--text-muted)] mb-1">英語</div>
               <h2 className="text-3xl font-black text-[var(--text-main)] tracking-tight">
                 {currentItem.term}
               </h2>
@@ -235,9 +240,10 @@ export const StudySession: React.FC<StudySessionProps> = ({
               )}
             </div>
           ) : (
+            /* 日 → 英 モード：日本語が問題 */
             <div>
-              <div className="text-xs text-[var(--text-muted)] mb-1">意味・日本語</div>
-              <h2 className="text-2xl font-bold text-[var(--text-main)]">
+              <div className="text-xs text-[var(--text-muted)] mb-1">日本語・意味</div>
+              <h2 className="text-2xl font-bold text-[var(--text-main)] leading-snug">
                 {currentItem.meaning}
               </h2>
             </div>
@@ -246,7 +252,9 @@ export const StudySession: React.FC<StudySessionProps> = ({
           {!isRevealed && (
             <div className="mt-6 flex items-center justify-center gap-1.5 text-xs text-[var(--text-muted)]">
               <Layers className="w-4 h-4" />
-              <span>タップで回答と語源を表示</span>
+              <span>
+                {direction === 'en-ja' ? 'タップで意味と語源を表示' : 'タップで正解の英語と語源を表示'}
+              </span>
             </div>
           )}
         </div>
@@ -254,18 +262,42 @@ export const StudySession: React.FC<StudySessionProps> = ({
         {/* 裏面（タップで回答・解説・語源を表示） */}
         {isRevealed && (
           <div className="pt-3 border-t border-[var(--border-color)] space-y-2.5 text-left animate-in fade-in duration-150">
-            {/* 意味 */}
-            <div>
-              <div className="text-xs font-semibold text-[var(--text-muted)]">意味・ニュアンス</div>
-              <div className="text-base font-bold text-[var(--text-main)]">
-                {currentItem.meaning}
+            {direction === 'en-ja' ? (
+              /* 英 → 日 モードの回答：日本語の意味を表示 */
+              <div>
+                <div className="text-xs font-semibold text-[var(--text-muted)]">意味・ニュアンス</div>
+                <div className="text-base font-bold text-[var(--text-main)]">
+                  {currentItem.meaning}
+                </div>
               </div>
-            </div>
+            ) : (
+              /* 日 → 英 モードの回答：正解の英語を表示（音声ボタン付き！） */
+              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-200">
+                <div className="text-xs font-semibold text-blue-800 mb-0.5">正解の英語</div>
+                <div className="flex items-center justify-between">
+                  <div className="text-xl font-black text-blue-950">
+                    {currentItem.term}
+                  </div>
+                  <button
+                    onClick={(e) => handlePlayVoice(currentItem.term, e)}
+                    className="p-1.5 rounded-lg bg-white border border-blue-200 hover:bg-blue-100 text-blue-600 transition cursor-pointer"
+                    title="正解の英語を発音"
+                  >
+                    <Volume2 className="w-5 h-5" />
+                  </button>
+                </div>
+                {currentItem.structure && (
+                  <div className="mt-1.5 text-xs font-mono text-blue-800">
+                    構文: {currentItem.structure}
+                  </div>
+                )}
+              </div>
+            )}
 
-            {/* 語源・成り立ち（例文の代わりに記憶定着を促進） */}
+            {/* 語源・成り立ち */}
             {currentItem.etymology && (
-              <div className="p-3 rounded-xl bg-blue-50/60 border border-blue-100 text-xs leading-relaxed text-slate-700">
-                <span className="font-bold text-blue-900 block mb-0.5">🌱 語源・成り立ち</span>
+              <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs leading-relaxed text-slate-700">
+                <span className="font-bold text-slate-900 block mb-0.5">🌱 語源・成り立ち</span>
                 {currentItem.etymology}
               </div>
             )}

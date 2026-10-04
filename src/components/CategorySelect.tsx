@@ -14,24 +14,24 @@ interface CategoryOption {
 }
 
 export const CategorySelect: React.FC<CategorySelectProps> = ({ onStartCategory, bookmarkCount }) => {
-  // 各カテゴリーごとの設定（デフォルト: シャッフルON, 英→日）
+  // 各カテゴリーごとの設定（デフォルト: シャッフルOFF, 英→日）
   const [options, setOptions] = useState<Record<string, CategoryOption>>({
-    general_word: { isShuffle: true, direction: 'en-ja' },
-    tech_word: { isShuffle: true, direction: 'en-ja' },
-    idiom: { isShuffle: true, direction: 'en-ja' },
-    grammar: { isShuffle: true, direction: 'en-ja' },
-    all: { isShuffle: true, direction: 'en-ja' },
-    bookmarks: { isShuffle: true, direction: 'en-ja' },
+    general_word: { isShuffle: false, direction: 'en-ja' },
+    tech_word: { isShuffle: false, direction: 'en-ja' },
+    idiom: { isShuffle: false, direction: 'en-ja' },
+    grammar: { isShuffle: false, direction: 'en-ja' },
+    all: { isShuffle: false, direction: 'en-ja' },
+    bookmarks: { isShuffle: false, direction: 'en-ja' },
   });
 
   const getOption = (key: string): CategoryOption => {
-    return options[key] || { isShuffle: true, direction: 'en-ja' };
+    return options[key] || { isShuffle: false, direction: 'en-ja' };
   };
 
   const toggleShuffle = (key: string, e: React.MouseEvent) => {
     e.stopPropagation();
     setOptions((prev) => {
-      const cur = prev[key] || { isShuffle: true, direction: 'en-ja' };
+      const cur = prev[key] || { isShuffle: false, direction: 'en-ja' };
       return {
         ...prev,
         [key]: { ...cur, isShuffle: !cur.isShuffle },

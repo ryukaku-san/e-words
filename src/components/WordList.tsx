@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Volume2, Star, BookOpen } from 'lucide-react';
+import { Search, Volume2, Star } from 'lucide-react';
 import { LEARNING_ITEMS, CATEGORIES } from '../data/learningItems';
 import type { CategoryType } from '../data/learningItems';
 import { speakEnglish } from '../utils/speech';
@@ -22,6 +22,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
         !q ||
         item.term.toLowerCase().includes(q) ||
         item.meaning.toLowerCase().includes(q) ||
+        item.etymology.toLowerCase().includes(q) ||
         (item.usage && item.usage.toLowerCase().includes(q)) ||
         (item.explanation && item.explanation.toLowerCase().includes(q));
 
@@ -30,7 +31,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4">
+    <div className="w-full max-w-md mx-auto space-y-3">
       {/* 検索バー */}
       <div className="relative">
         <Search className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -38,8 +39,8 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="英語・日本語で検索..."
-          className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] text-sm text-[var(--text-main)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--primary)] transition"
+          placeholder="英語・意味・語源で検索..."
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] text-sm text-[var(--text-main)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--primary)] transition"
         />
       </div>
 
@@ -66,7 +67,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
       </div>
 
       {/* 単語リスト */}
-      <div className="space-y-2.5">
+      <div className="space-y-2">
         {filteredItems.map((item) => {
           const isExpanded = expandedId === item.id;
           const isBookmarked = bookmarks.includes(item.id);
@@ -74,7 +75,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
           return (
             <div
               key={item.id}
-              className="p-4 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm hover:border-[var(--primary)]/50 transition"
+              className="p-3.5 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm hover:border-[var(--primary)]/50 transition"
             >
               <div
                 className="flex items-start justify-between cursor-pointer"
@@ -91,7 +92,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
                       </span>
                     )}
                   </div>
-                  <div className="text-xs text-[var(--text-muted)] mt-1">
+                  <div className="text-xs text-[var(--text-muted)] mt-0.5">
                     {item.meaning}
                   </div>
                 </div>
@@ -125,12 +126,20 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
                 </div>
               </div>
 
-              {/* 展開時の詳細（例文・文法解説） */}
+              {/* 展開時の詳細（語源・文法解説） */}
               {isExpanded && (
                 <div className="mt-3 pt-3 border-t border-[var(--border-color)] space-y-2 text-xs animate-in fade-in duration-150">
                   {item.structure && (
-                    <div className="p-2 rounded-lg bg-[var(--bg-muted)] font-mono text-[var(--accent)] font-semibold text-[11px]">
+                    <div className="p-2 rounded-lg bg-[var(--bg-muted)] font-mono text-[var(--primary)] font-semibold text-[11px]">
                       構造: {item.structure}
+                    </div>
+                  )}
+
+                  {/* 語源 */}
+                  {item.etymology && (
+                    <div className="p-2.5 rounded-lg bg-blue-50/60 border border-blue-100 text-slate-700 leading-relaxed">
+                      <span className="font-bold text-blue-900 block mb-0.5">🌱 語源・成り立ち</span>
+                      {item.etymology}
                     </div>
                   )}
 
@@ -140,32 +149,6 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
                         {item.category === 'grammar' ? '💡 解説: ' : '📖 文脈: '}
                       </span>
                       {item.explanation || item.usage}
-                    </div>
-                  )}
-
-                  {item.example && (
-                    <div className="p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-muted)]/50 space-y-1">
-                      <div className="flex items-center justify-between text-[11px] font-semibold text-[var(--primary)]">
-                        <span className="flex items-center gap-1">
-                          <BookOpen className="w-3 h-3" />
-                          例文
-                        </span>
-                        <button
-                          onClick={() => speakEnglish(item.example)}
-                          className="hover:underline flex items-center gap-1 cursor-pointer"
-                        >
-                          <Volume2 className="w-3 h-3" />
-                          発音
-                        </button>
-                      </div>
-                      <p className="font-medium text-[var(--text-main)] text-xs">
-                        {item.example}
-                      </p>
-                      {item.exampleJa && (
-                        <p className="text-[11px] text-[var(--text-muted)]">
-                          {item.exampleJa}
-                        </p>
-                      )}
                     </div>
                   )}
                 </div>

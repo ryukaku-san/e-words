@@ -1,5 +1,3 @@
-export type UITheme = 'simple' | 'dark' | 'pop';
-
 export interface DayStudyRecord {
   date: string; // "YYYY-MM-DD"
   totalAnswered: number;
@@ -9,7 +7,6 @@ export interface DayStudyRecord {
 }
 
 export interface UserProgress {
-  theme: UITheme;
   history: Record<string, DayStudyRecord>; // date -> record
   bookmarks: string[]; // item IDs
   lastStudiedDate: string | null;
@@ -37,7 +34,6 @@ export function loadUserProgress(): UserProgress {
   }
 
   return {
-    theme: 'simple',
     history: {},
     bookmarks: [],
     lastStudiedDate: null,

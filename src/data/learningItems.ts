@@ -9,8 +9,7 @@ export interface LearningItem {
   usage?: string; // 本文での使われ方・文脈
   structure?: string; // 文法構文の構造
   explanation?: string; // 文法解説
-  example: string; // サンプル英文
-  exampleJa?: string; // サンプル英文の和訳
+  etymology: string; // 語源・言葉の成り立ち（例文の代わりに記憶定着に役立てる）
 }
 
 export const CATEGORIES: { id: CategoryType; label: string; icon: string; count: number }[] = [
@@ -30,8 +29,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '封じ込め、抑制、格納',
     usage: '製品全体におけるClaudeの安全な制御',
-    example: 'We implement multi-layered containment across all products.',
-    exampleJa: '私たちは全製品にわたって多層的な封じ込め（安全制御）を実装しています。'
+    etymology: 'con-（共に、完全に）+ tain（ラテン語 tenere: 保つ・掴む）+ -ment（名詞語尾）→「枠の中にすべて掴んで留めておくこと」'
   },
   {
     id: 'gw-2',
@@ -40,8 +38,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n. phr.',
     meaning: '被害想定範囲、影響範囲（元は爆発半径）',
     usage: 'エージェントの誤動作・攻撃時の最大被害規模',
-    example: 'As agents grow more capable, so does their potential blast radius.',
-    exampleJa: 'エージェントの能力が高まるにつれて、その潜在的な被害想定範囲も拡大します。'
+    etymology: 'blast（古英語 blæst: 突風・吹き荒れる爆風）+ radius（ラテン語: 車輪の輻/スポーク・光線・半径）→「爆風が届く円形の被害エリア」'
   },
   {
     id: 'gw-3',
@@ -50,8 +47,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '上限を定める、抑える',
     usage: '潜在的被害範囲を制限する',
-    example: 'We need to cap the potential damage an autonomous agent could cause.',
-    exampleJa: '自律型エージェントが引き起こし得る潜在的被害に上限を設ける必要があります。'
+    etymology: '後期ラテン語 cappa（頭を覆うもの・帽子/ケープ）→「上から帽子や蓋を被せて、それ以上大きくならないよう抑える」'
   },
   {
     id: 'gw-4',
@@ -60,8 +56,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '十分な',
     usage: '〜をダウンさせるのに十分な権限',
-    example: 'He had access sufficient to take down an internal Anthropic service.',
-    exampleJa: '彼はAnthropicの内部サービスを停止させるのに十分なアクセス権限を持っていました。'
+    etymology: 'sub-（下から、手元に）+ facere（ラテン語: 作る、成す）→「下から支えて要求水準を満たすだけの量がある」'
   },
   {
     id: 'gw-5',
@@ -70,8 +65,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '本番配備、導入、展開',
     usage: 'モデルや製品の本番運用',
-    example: 'Safe deployment of autonomous systems requires careful safeguards.',
-    exampleJa: '自律システムの安全な本番配備には、入念な安全対策が不可欠です。'
+    etymology: 'dis-（分離・解除）+ plicare（ラテン語: 折る、畳む）→「折りたたまれていた軍やシステムを解き放って前線に広げること」'
   },
   {
     id: 'gw-6',
@@ -80,8 +74,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '安全対策、保護措置',
     usage: 'モデルの訓練・運用における防御策',
-    example: 'Progress on safeguards has steadily driven down the failure rate.',
-    exampleJa: '安全対策の進歩により、障害の発生率は着実に低下しています。'
+    etymology: 'safe（安全な: ラテン語 salvus 傷のない）+ guard（見張る、防ぐ）→「安全な状態を見張り維持するための盾」'
   },
   {
     id: 'gw-7',
@@ -90,8 +83,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '自律的な、自立型の',
     usage: '自律型AIエージェント',
-    example: 'Autonomous agents can perform complex tasks without constant oversight.',
-    exampleJa: '自律型エージェントは常時の監視なしに複雑なタスクを遂行できます。'
+    etymology: 'auto-（ギリシャ語: 自身の、自らの）+ nomos（法、規則）→「外部の命令ではなく、自分自身の法・規範に従って動く」'
   },
   {
     id: 'gw-8',
@@ -100,8 +92,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '（〜だと）見なす、判断する',
     usage: '公開するには危険すぎると判断された',
-    example: 'The action was deemed too dangerous to run unattended.',
-    exampleJa: 'その操作は監視なしで実行するには危険すぎると判断されました。'
+    etymology: '古英語 dēman（裁く、判決を下す）。doom（運命、判決）と同根語で、熟慮の末に「〜だと見なす・判定する」という意味'
   },
   {
     id: 'gw-9',
@@ -110,8 +101,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '誤りを犯しやすい、不完全な',
     usage: '人間による確認作業はミスが起きやすい',
-    example: 'Human review is inherently fallible under heavy workloads.',
-    exampleJa: '過密な作業負荷の下では、人間のチェックは本質的にミスを犯しやすいものです。'
+    etymology: 'fallere（ラテン語: 欺く、誤る、fail/faultの語源）+ -ible（可能・性質）→「つまずいたり騙されたりしやすい」'
   },
   {
     id: 'gw-10',
@@ -120,8 +110,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '利用状況データ収集、遠隔測定・ログ',
     usage: 'ユーザーの承認行動ログ',
-    example: 'Telemetry helps identify anomalous behavior before damage occurs.',
-    exampleJa: 'テレメトリデータは被害が出る前に異常な挙動を特定するのに役立ちます。'
+    etymology: 'tele-（ギリシャ語: 遠く離れた: telephone, televisionと同根）+ -metry（測定術: metron/測る）→「遠く離れた場所の状態を自動測定・収集すること」'
   },
   {
     id: 'gw-11',
@@ -130,8 +119,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '勤勉な、入念な、配慮の行き届いた',
     usage: '承認作業への注意深さ',
-    example: 'Users become much less diligent in their supervision over time.',
-    exampleJa: 'ユーザーは時間が経つにつれて監視作業において入念さを欠くようになります。'
+    etymology: 'dis-（選り分けて）+ legere（選ぶ、好む）→「価値あるものを丁寧に選別して大事にするような、注意深く熱心な姿勢」'
   },
   {
     id: 'gw-12',
@@ -140,8 +128,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '疲労、消耗',
     usage: 'approval fatigue（承認疲れ・形骸化）',
-    example: 'Excessive prompts cause approval fatigue, leading to accidental approvals.',
-    exampleJa: '過度なプロンプト表示は承認疲れを引き起こし、安易な承認につながります。'
+    etymology: 'ラテン語 fatigare（疲れ果てさせる）。fatis（割れ目・息切れ）に由来し、過度の負担で限界に達した状態'
   },
   {
     id: 'gw-13',
@@ -150,8 +137,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '確率論的な（↔ deterministic: 決定論的な）',
     usage: 'モデルの出力は確率的で完全ではない',
-    example: 'LLMs are probabilistic models, which means 100% reliability is impossible.',
-    exampleJa: 'LLMは確率論的モデルであるため、100%の確実性はあり得ません。'
+    etymology: 'pro-（前に）+ probare（ラテン語: 試す、証明する、probeと同根）→「おそらく確からしい（probable）根拠に基づく」'
   },
   {
     id: 'gw-14',
@@ -160,8 +146,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '施行する、強制・適用する',
     usage: 'アクセス境界を厳格に適用する',
-    example: 'We supervise what the agent is able to do by enforcing access boundaries.',
-    exampleJa: 'アクセス境界を厳格に適用することで、エージェントが実行可能な範囲を制御します。'
+    etymology: 'en-（中に加える、〜の状態にする）+ force（力、ラテン語 fortis/強い）→「権威や力を込めてルールを確実に効かせる」'
   },
   {
     id: 'gw-15',
@@ -170,8 +155,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '送信、外部への出口（↔ ingress）',
     usage: '外部通信・送信の制御（egress controls）',
-    example: 'Strict egress controls prevent credentials from leaving the sandbox.',
-    exampleJa: '厳格な外部通信（Egress）制御により、サンドボックスから認証情報が漏洩するのを防ぎます。'
+    etymology: 'e- / ex-（外へ）+ gradi（ラテン語: 歩む、進む: grade/progressと同根）→「内側から外へと歩み出ること・外部送信」'
   },
   {
     id: 'gw-16',
@@ -180,8 +164,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '（時間・労力を）注ぐ、捧げる',
     usage: '最も工数を注ぎ込んできた領域',
-    example: 'This is the area we have devoted the most engineering effort to.',
-    exampleJa: 'これこそ私たちが最もエンジニアリング工数を注ぎ込んできた領域です。'
+    etymology: 'de-（離れて、徹底的に）+ vovere（ラテン語: 誓う、vowと同根）→「誓いを立てて神や対象に一身を捧げる・集中投下する」'
   },
   {
     id: 'gw-17',
@@ -190,8 +173,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n. / v.',
     meaning: '悪用、誤用',
     usage: 'ユーザーによる悪用や不注意な操作',
-    example: 'Guardrails protect against both accidental misuse and intentional attacks.',
-    exampleJa: 'ガードレールは、偶発的な誤用と意図的な攻撃の双方からシステムを保護します。'
+    etymology: 'mis-（誤って、悪く）+ use（使う）→「本来の目的やルールから外れた間違った使い方」'
   },
   {
     id: 'gw-18',
@@ -200,8 +182,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '逸脱動作、不正動作',
     usage: 'モデルが意図しない問題行動を起こすこと',
-    example: 'Detecting subtle model misbehavior requires real-time monitoring.',
-    exampleJa: 'モデルの些細な逸脱動作を検知するには、リアルタイムのモニタリングが必要です。'
+    etymology: 'mis-（不正な）+ be-（強意）+ have（持っている、身を処する）→「あるべき規範から外れた不適切な立ち振る舞い」'
   },
   {
     id: 'gw-19',
@@ -210,8 +191,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '（AIが人間の意図や価値観に）沿った、整合した',
     usage: 'アライメント評価で適合度が高まっている',
-    example: 'Even highly aligned models still require hard security boundaries.',
-    exampleJa: 'いかに高度にアライメントされたモデルであっても、強固なセキュリティ境界が必要です。'
+    etymology: 'a- / ad-（〜に向かって）+ ligne（フランス語: 線、line）→「まっすぐ同じ直線・基準の上に並べること」'
   },
   {
     id: 'gw-20',
@@ -220,8 +200,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '縮小する、減少する',
     usage: 'リスクが必ずしも減るとは限らない',
-    example: 'The risk does not necessarily shrink as capabilities advance.',
-    exampleJa: '能力が向上したからといって、リスクが必ずしも減少するとは限りません。'
+    etymology: 'ゲルマン祖語 skrink-（しわが寄る、縮む）。物理的な収縮から数値・リスクの減少まで幅広く用いられる'
   },
   {
     id: 'gw-21',
@@ -230,8 +209,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '（機密情報などを）不正持ち出しする',
     usage: '外部へ認証情報を盗み出す',
-    example: 'An attacker might try to exfiltrate secret keys via external requests.',
-    exampleJa: '攻撃者は外部リクエストを介してシークレットキーを不正持ち出ししようとする可能性があります。'
+    etymology: 'ex-（外へ）+ filtrate（浸透する、ろ過する: filterと同根）→「防壁の隙間からこっそり外へしみ出させる・秘密裏に持ち出す」'
   },
   {
     id: 'gw-22',
@@ -240,8 +218,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '防御境界線、周囲',
     usage: '厳格な境界線を敷く',
-    example: 'Establish a hard security perimeter around the execution sandbox.',
-    exampleJa: '実行サンドボックスの周囲に強固なセキュリティ防御境界線を構築します。'
+    etymology: 'peri-（ギリシャ語: 周囲をまわる）+ metron（測る）→「周囲をぐるりと一周測った輪郭・外周の防衛境界線」'
   },
   {
     id: 'gw-23',
@@ -250,8 +227,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '監視なしの、無人の',
     usage: '人間の常時承認なしで実行する',
-    example: 'Running agents unattended requires the highest degree of containment.',
-    exampleJa: 'エージェントを無人監視で実行するには、最高水準の封じ込め対策が求められます。'
+    etymology: 'un-（否定）+ at-（〜へ）+ tendere（ラテン語: 意識を伸ばす、注意を払う）→「誰の意識・視線も向けられていない状態」'
   },
   {
     id: 'gw-24',
@@ -260,8 +236,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '影響を受けやすさ、脆弱性',
     usage: 'プロンプトインジェクションへの耐性度',
-    example: 'We evaluate the model\'s susceptibility to indirect prompt injection.',
-    exampleJa: '間接プロンプトインジェクションに対するモデルの脆弱性（影響の受けやすさ）を検証します。'
+    etymology: 'sub-（下から）+ capere（ラテン語: 掴む、受け取る）+ -ibility →「下からまともに刺激や攻撃を受け止めやすい性質」'
   },
   {
     id: 'gw-25',
@@ -270,8 +245,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '勇み足の、熱心すぎる',
     usage: '先走りすぎたエージェントの挙動',
-    example: 'An overeager agent might delete files to free up disk space.',
-    exampleJa: '先走りすぎたエージェントはディスク容量を空けようとして重要なファイルを削除してしまう恐れがあります。'
+    etymology: 'over-（過剰に）+ eager（ラテン語 acer: 鋭利な、熱心な）→「やる気が鋭すぎて空回りし、先走ってしまう」'
   },
   {
     id: 'gw-26',
@@ -280,8 +254,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '一時的な、セッション限りの',
     usage: 'セッション終了時に消去されるファイルシステム',
-    example: 'Agents execute within ephemeral environments that reset after each task.',
-    exampleJa: 'エージェントはタスクごとにリセットされる一時的な（エフェメラルな）環境で実行されます。'
+    etymology: 'epi-（〜の間だけ）+ hemera（ギリシャ語: 一日）→「カゲロウのようにたった一日限りの儚い命・一時的な環境」'
   },
   {
     id: 'gw-27',
@@ -290,8 +263,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '敵対者、サイバー攻撃者',
     usage: '豊富な資金・スキルを持つ攻撃者',
-    example: 'We design defenses assuming a sophisticated adversary.',
-    exampleJa: '巧妙なスキルを持つ攻撃者を想定して防御システムを設計しています。'
+    etymology: 'ad-（〜に対して）+ vertere（ラテン語: 向きを変える、vers-）→「自分と真っ向から反対を向いて立ち塞がる相手」'
   },
   {
     id: 'gw-28',
@@ -300,8 +272,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '重大な結果を招く、深刻な',
     usage: '最も影響の大きかったセキュリティインシデント',
-    example: 'Prioritize mitigating the most consequential failure modes first.',
-    exampleJa: '最も深刻な被害を招く障害パターンへの対策を最優先します。'
+    etymology: 'con-（共に）+ sequi（ラテン語: 続く、従う: sequenceと同根）→「それに伴って極めて重い結果がついて回る」'
   },
   {
     id: 'gw-29',
@@ -310,8 +281,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '扱いやすい、現実的に解決可能な',
     usage: '技術者相手だからこそ成立する現実的解決策',
-    example: 'Focusing on high-impact scenarios makes the security problem tractable.',
-    exampleJa: '影響の大きいシナリオに集中することで、セキュリティ課題を現実的に解決可能なものにします。'
+    etymology: 'tractare（ラテン語: 引く、引っ張って操る: tractorと同根）+ -able →「手元で手綱を引いてコントロールできる・解決可能」'
   },
   {
     id: 'gw-30',
@@ -320,8 +290,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '軽減する、緩和する',
     usage: '不注意な承認を緩和・抑制する',
-    example: 'Multi-layer defenses mitigate the danger of prompt injection.',
-    exampleJa: '多層防御によってプロンプトインジェクションの危険性を軽減します。'
+    etymology: 'mitis（ラテン語: 穏やかな、柔らかい）+ agere（動かす、導く）→「固く険しい事態を柔らかく和らげる」'
   },
   {
     id: 'gw-31',
@@ -330,8 +299,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '不注意な、軽率な',
     usage: 'よく確認せずに行う安易な承認',
-    example: 'Approval fatigue increases the rate of incautious approvals.',
-    exampleJa: '承認疲れは不注意な承認の発生率を高めます。'
+    etymology: 'in-（否定）+ cautio（用心、警戒: cautionの語源）→「警戒心を解いてしまい、不用意で軽率な」'
   },
   {
     id: 'gw-32',
@@ -340,8 +308,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '監査・検証可能な',
     usage: 'コードが公開され第三者が検証できる',
-    example: 'All agent actions must produce an auditable trail of events.',
-    exampleJa: 'エージェントのすべての行動は検証可能な監査証跡を残す必要があります。'
+    etymology: 'audire（ラテン語: 聴く、audioと同根）+ -able →「元は公聴会で証言を耳で聴いて確かめたことから、第三者が監査・検証できること」'
   },
   {
     id: 'gw-33',
@@ -350,8 +317,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '（意図からの）逸脱、ズレ',
     usage: 'エージェントの挙動が目標からずれること',
-    example: 'Notice drift in the first place before irreversible actions occur.',
-    exampleJa: '取り返しのつかない操作が起きる前に、初期段階での挙動の逸脱に気づくことが重要です。'
+    etymology: 'drive（強く押す、駆り立てる）から派生。風や潮の流れに押し流され、元の進行方向から徐々にズレていく現象'
   },
   {
     id: 'gw-34',
@@ -360,8 +326,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v. / n.',
     meaning: '同意する / 承認、同意',
     usage: 'ユーザーの同意を得る前の実行',
-    example: 'Never perform irreversible mutations without explicit user consent.',
-    exampleJa: 'ユーザーの明示的な同意なしに不可逆な変更処理を実行してはなりません。'
+    etymology: 'con-（共に）+ sentire（ラテン語: 感じる、senseと同根）→「同じ感覚・思いを共有して認める」'
   },
   {
     id: 'gw-35',
@@ -370,8 +335,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'v.',
     meaning: '延期する、後回しにする',
     usage: 'ユーザー承認まで処理を遅延させる',
-    example: 'Defer risky tool executions until the human reviewer has confirmed.',
-    exampleJa: '人間の確認者が承認するまで、リスクのあるツールの実行を保留・遅延させます。'
+    etymology: 'de-（離れて、脇へ）+ ferre（ラテン語: 運ぶ）→「決断や行動を脇へ運び置いて、あとへ先延ばしにする」'
   },
   {
     id: 'gw-36',
@@ -380,8 +344,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adv.',
     meaning: '暗黙のうちに、無条件に',
     usage: 'ローカルだからと暗黙に信用してはならない',
-    example: 'Never implicitly trust inputs originating from local files.',
-    exampleJa: 'ローカルファイル由来の入力であっても、暗黙のうちに信用してはなりません。'
+    etymology: 'im- / in-（内側に）+ plicare（ラテン語: 折りたたむ）→「外に明文化せず、内側に折りたたんで包み隠しているさま」'
   },
   {
     id: 'gw-37',
@@ -390,8 +353,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '異常な、変則的な',
     usage: '判定器が検知すべき不審な兆候',
-    example: 'Detect anomalous patterns in tool invocation requests.',
-    exampleJa: 'ツール呼び出しリクエストの中にある変則的なパターンを検出します。'
+    etymology: 'an-（否定）+ homalos（ギリシャ語: 均等な、平坦な: homeo-と同根）→「いつもと同じ均一な状態ではなく、デコボコと狂っている」'
   },
   {
     id: 'gw-38',
@@ -400,8 +362,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '出所、来歴、真正性',
     usage: 'リクエストの発信元が正当かどうかの出所',
-    example: 'Verify the provenance of instructions before executing system commands.',
-    exampleJa: 'システムコマンドを実行する前に、指示の出所・真正性を検証します。'
+    etymology: 'pro-（前へ）+ venire（ラテン語: 来る）→「前をたどるとどこからやって来たのかという起源・出所」'
   },
   {
     id: 'gw-39',
@@ -410,8 +371,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'adj.',
     meaning: '不透明な、内部を窺い知れない',
     usage: '外部監視ツールから中身が見えないVM',
-    example: 'Black-box VMs can be opaque to external host telemetry.',
-    exampleJa: 'ブラックボックスVMはホスト側の外部テレメトリから内部が見えにくい（不透明な）場合があります。'
+    etymology: 'ラテン語 opacus（日陰の、暗い、光を通さない）→「光が通らず向こう側や内部の様子が一切見えないこと」'
   },
 
   // 2. AI・セキュリティ技術専門用語 (13語)
@@ -422,8 +382,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '人間がプロセスの途中で介在・承認する仕組み',
     usage: 'エージェントの危険な操作を人間が確認して承認するアーキテクチャ',
-    example: 'A human-in-the-loop setup ensures that high-risk actions are approved by engineers.',
-    exampleJa: '人間参加型（HITL）の構成により、高リスクな操作はエンジニアの承認を得ることが保証されます。'
+    etymology: 'human（人間）+ in the loop（一連の制御ループの内側に加わっていること）→ 自動制御の輪の中に人間が介在する構造'
   },
   {
     id: 'tw-2',
@@ -432,8 +391,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '外部に影響を与えないよう隔離された安全な実行環境',
     usage: 'コード実行やファイルアクセスを閉じ込める隔離領域',
-    example: 'Untrusted code is executed strictly within an isolated sandbox.',
-    exampleJa: '信頼されていないコードは、隔離されたサンドボックス内で厳格に実行されます。'
+    etymology: 'sand（砂）+ box（箱）→「子供が砂場の中でいくら砂を撒き散らしても周囲の部屋を汚さない」という比喩から'
   },
   {
     id: 'tw-3',
@@ -442,8 +400,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '悪意あるプロンプトを入力してモデルの制限を突破・乗っ取る攻撃',
     usage: '外部データやWebページに仕込まれた指示によるAIのハイジャック',
-    example: 'Indirect prompt injection can hijack an agent when reading web pages.',
-    exampleJa: '間接プロンプトインジェクションは、Webページを読み込む際にエージェントを乗っ取る可能性があります。'
+    etymology: 'SQL injectionの派生。in-（中へ）+ jacere（ラテン語: 投げる）→ 本来の指示文の中に悪意の指示を「注射・注入」してねじ込む攻撃'
   },
   {
     id: 'tw-4',
@@ -452,8 +409,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: 'プログラムが動作する実行環境基盤',
     usage: 'コンテナやエージェントコードを実行する基盤層',
-    example: 'Battle-tested container runtimes enforce resource limits and process isolation.',
-    exampleJa: '実戦で検証されたコンテナランタイムが、リソース制限とプロセス隔離を適用します。'
+    etymology: 'run（走る、実行する）+ time（時・環境）→ コンパイル時（compile time）の対義語で、実際に動いている期間とその基盤'
   },
   {
     id: 'tw-5',
@@ -462,8 +418,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '複数システムやコンテナ群を自動統合・調整する仕組み',
     usage: 'エージェントタスク用の仮想環境やツールの自動プロビジョニング',
-    example: 'The orchestration layer provisions clean sandboxes on demand.',
-    exampleJa: 'オーケストレーション層が、オンデマンドでクリーンなサンドボックスを自動準備します。'
+    etymology: 'orchestra（オーケストラ管弦楽団）から。指揮者が多くの楽器を統率して1つの曲を奏でるように、多数のサーバーやVMを協調させる'
   },
   {
     id: 'tw-6',
@@ -472,8 +427,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '入力や内部状態を監視・分類するための検出モデル・測定器',
     usage: 'プロンプトや出力の危険度をリアルタイムに検知する補助モデル',
-    example: 'A lightweight classifier checks prompts for policy violations.',
-    exampleJa: '軽量な分類器（クラシファイア）が、プロンプトのポリシー違反をチェックします。'
+    etymology: 'classify（等級・クラスに分ける）+ probe（ラテン語 probare/調べる: 内部に探針を刺して探る器具）'
   },
   {
     id: 'tw-7',
@@ -482,8 +436,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '攻撃側の視点でシステムの弱点や脆弱性を検証する疑似攻撃演習',
     usage: '社内の専門チームがエージェントの防御網を突破しようと試みるテスト',
-    example: 'Rigorous red teaming reveals vulnerabilities before public release.',
-    exampleJa: '厳格なレッドチーミング演習により、一般公開前に脆弱性を明らかにします。'
+    etymology: '軍事演習で自軍を守備隊「青軍（Blue Team）」、敵の仮想敵国を「赤軍（Red Team）」と呼んだことに由来'
   },
   {
     id: 'tw-8',
@@ -492,8 +445,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: 'モデルと各種データ・ツールをつなぐオープンプロトコル',
     usage: 'ClaudeがファイルシステムやGit、APIなどのツールと安全に連携する標準規格',
-    example: 'Claude interacts with external tools safely through the Model Context Protocol.',
-    exampleJa: 'ClaudeはModel Context Protocolを通じて外部ツールと安全にやり取りします。'
+    etymology: 'Model（AIモデル）+ Context（文脈・情報）+ Protocol（規約）→ AIが外部ツールやデータソースの文脈を安全にやり取りする取り決め'
   },
   {
     id: 'tw-9',
@@ -502,8 +454,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: 'サイバー攻撃において実際に悪意ある処理を実行する本体データ',
     usage: 'インジェクション攻撃でシステムを侵害するコードやコマンド',
-    example: 'The attacker hid a malicious payload inside an innocent-looking text file.',
-    exampleJa: '攻撃者は無害に見えるテキストファイルの中に悪意あるペイロードを潜ませていました。'
+    etymology: 'pay（報酬、実入り）+ load（荷物）→ 航空宇宙・ロケットで燃料や機体以外の「実際に運ぶ有償の積載物・弾頭」を指す軍事用語がITに転用'
   },
   {
     id: 'tw-10',
@@ -512,8 +463,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '情報漏洩や不正侵入を検知するためにあらかじめ仕込んでおく特定の目印文字列',
     usage: 'エージェントが機密データを外部送信していないかを検知するトラップ',
-    example: 'Canary strings trigger immediate alerts if they appear in egress traffic.',
-    exampleJa: '仕込んでおいたカナリア文字列が外部通信に現れた場合、即座にアラートが発報されます。'
+    etymology: 'かつて炭鉱夫が有毒ガス（無色無臭）の発生を早く察知するために「カナリアの鳥籠」を持ち込んだ歴史的事実（炭鉱のカナリア）から'
   },
   {
     id: 'tw-11',
@@ -522,8 +472,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '仮想マシン（VM）を起動・制御するための基盤仮想化ソフトウェア',
     usage: 'セキュアな隔離境界を提供する仮想化レイヤー',
-    example: 'Hardware-level hypervisors provide strong tenant isolation.',
-    exampleJa: 'ハードウェアレベルのハイパーバイザが、強力なテナント間隔離を提供します。'
+    etymology: 'hyper-（上位の、超えた）+ supervisor（監督者）→ OS（Supervisor）のさらに「上位でOSを監督・統括するもの」'
   },
   {
     id: 'tw-12',
@@ -532,8 +481,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '端末の挙動を監視し脅威を検知・対処するセキュリティシステム',
     usage: 'VMやホスト端末での不審なプロセス実行やネットワーク接続の監視',
-    example: 'EDR agents monitor anomalous process executions on the host.',
-    exampleJa: 'EDRエージェントが、ホスト端末上の不審なプロセス実行を監視します。'
+    etymology: 'Endpoint（末端のPCやサーバー）+ Detection（検知）+ Response（即座の隔離などの対処）'
   },
   {
     id: 'tw-13',
@@ -542,8 +490,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     pos: 'n.',
     meaning: '通信の間に割り込んで中継・検査・改変を行うプロキシ',
     usage: 'エージェントのアウトバウンドHTTPリクエストを傍受・検証する仕組み',
-    example: 'An outbound MITM proxy inspects API calls for credential leakage.',
-    exampleJa: 'アウトバウンドMITMプロキシが、API呼び出しに認証情報の漏洩がないかを検査します。'
+    etymology: 'Man in the Middle（中間者）。送信者と受信者の「真ん中に男が割り込む」攻撃手法を、防御側の通信検査に転用したもの'
   },
 
   // 3. 熟語・句動詞・コロケーション (20語)
@@ -553,8 +500,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'reject out of hand',
     meaning: '即座に却下する、頭から拒絶する',
     usage: 'we\'d have rejected out of hand the idea...（以前なら即座に却下していた発想）',
-    example: 'Twelve months ago, we\'d have rejected out of hand the idea of granting Claude access.',
-    exampleJa: '12か月前であれば、Claudeにアクセス権を与えるなどという発想は即座に却下していたでしょう。'
+    etymology: 'out of hand（手元からすぐに、考える間もなく手放して）→「検討のために手に持つことすらせずに、手元から払い落とす」イメージ'
   },
   {
     id: 'id-2',
@@ -562,8 +508,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'take down',
     meaning: '（サーバーやサービスを）停止させる、ダウンさせる',
     usage: 'sufficient to take down an internal Anthropic service',
-    example: 'A single misconfigured command was sufficient to take down an internal service.',
-    exampleJa: '設定ミスのあるコマンド1つで、内部サービスをダウンさせるには十分でした。'
+    etymology: 'take（取る、引き倒す）+ down（下へ）→ ボクシングなどで相手をリングに倒すように、稼働中のサーバーを叩き落として停止させる'
   },
   {
     id: 'id-3',
@@ -571,8 +516,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'drive down',
     meaning: '（数値・確率・コストを）押し下げる',
     usage: 'Progress on safeguards has steadily driven down the first',
-    example: 'Progress on safeguards has steadily driven down the failure rate.',
-    exampleJa: '安全対策の進歩によって、障害発生率は着実に押し下げられてきました。'
+    etymology: 'drive（強い力で追いやる、走らせる）+ down（下へ）→ 意図的な強い力・取り組みによって、数値の針をぐいぐいと下方向へ押し込む'
   },
   {
     id: 'id-4',
@@ -580,8 +524,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'tip toward',
     meaning: '（バランスや天秤が）〜へ傾く',
     usage: 'the risk-reward calculation tips heavily toward adoption',
-    example: 'The risk-reward calculation tips heavily toward adoption.',
-    exampleJa: 'リスクとリターンの計算は、導入の推進へと大きく傾いています。'
+    etymology: 'tip（傾ける、ひっくり返す）+ toward（〜の方向へ）→ シーソーや天秤の重心が動いて、片方の側へとガクンと傾くこと'
   },
   {
     id: 'id-5',
@@ -589,8 +532,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'as long as ...',
     meaning: '〜である限りは（条件）',
     usage: 'as long as products can be made safe.',
-    example: 'We can deploy autonomous agents as long as products can be made safe.',
-    exampleJa: '製品の安全性が確保できる限りにおいて、自律型エージェントを展開できます。'
+    etymology: 'long（時間の長さ）。「その条件が続く時間の長さと同じ長さだけ、主節の事態も成り立つ」という平行関係を表す接続表現'
   },
   {
     id: 'id-6',
@@ -598,8 +540,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'hold up',
     meaning: '（負荷や検証に）耐える、持ちこたえる、有効であり続ける',
     usage: 'This article shares what\'s held up, what\'s broken...',
-    example: 'This article shares what\'s held up and what\'s broken under real workloads.',
-    exampleJa: '本記事では、実際の負荷のもとで何が持ちこたえ、何が破綻したのかを共有します。'
+    etymology: 'hold（保持する）+ up（上向きに支えて）→ 上からの強い重圧や激しい風雪を受けても、下に潰れずに上に直立し続ける'
   },
   {
     id: 'id-7',
@@ -607,8 +548,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'along the way',
     meaning: 'その過程で、これまでに、道中で',
     usage: 'what we\'ve learned about agent security along the way.',
-    example: 'Here is what we have learned about agent security along the way.',
-    exampleJa: 'これまでの道のりで私たちがエージェントセキュリティに関して学んできたことをまとめます。'
+    etymology: 'along（〜に沿って）+ the way（道のり）→ ゴールを目指して歩んできたこれまでの道のりの途中で'
   },
   {
     id: 'id-8',
@@ -616,8 +556,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'route around',
     meaning: '（障害や制限を）迂回する、すり抜ける',
     usage: 'by routing around restrictions nobody thought to write down.',
-    example: 'The agent succeeded by routing around restrictions nobody thought to write down.',
-    exampleJa: 'エージェントは、誰も明文化しようとすら思わなかった制約を迂回して実行しました。'
+    etymology: 'route（道筋を定める）+ around（障害物のまわりをぐるりと）→ 通行止めの壁にぶつかったときに、脇の抜け道を回って迂回する'
   },
   {
     id: 'id-9',
@@ -625,8 +564,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'put ... to work',
     meaning: '〜を活用する、稼働させる、役立てる',
     usage: 'capabilities that are sometimes put to work in unexpected ways.',
-    example: 'Model capabilities are sometimes put to work in unexpected ways.',
-    exampleJa: 'モデルの能力は、時に予期せぬ形で活用されることがあります。'
+    etymology: 'put（配置する）+ to work（仕事・労働の状態へ）→ 眠っている能力やツールを実際の現場に送り込んで働かせる'
   },
   {
     id: 'id-10',
@@ -634,8 +572,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'stand alone',
     meaning: '単独で成り立つ、独立して機能する',
     usage: 'model layer will never be 100% effective, which is why it can\'t stand alone.',
-    example: 'Model-level defenses will never be 100% effective, which is why they cannot stand alone.',
-    exampleJa: 'モデル層の防御が100%有効になることはないため、単独で機能させることはできません。'
+    etymology: 'stand（立つ）+ alone（ひとりで）→ 他の支えや添え木なしに、自分ひとりの足だけで自立して倒れずにいること'
   },
   {
     id: 'id-11',
@@ -643,8 +580,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'pick up the slack',
     meaning: '不足分を補う、穴埋め・尻拭いをする',
     usage: 'the model layer has to pick up the slack',
-    example: 'The model layer has to pick up the slack when host boundaries fail.',
-    exampleJa: 'ホスト側の境界防御が失敗した時は、モデル層がその不足分を補わなければなりません。'
+    etymology: 'slack（緩んだロープ・たるみ）。船のロープのたるみ（slack）を手繰り寄せてピンと張る作業から「他者の不備や手落ちを補う」意味に発展'
   },
   {
     id: 'id-12',
@@ -652,8 +588,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'higher up the chain',
     meaning: '（プロセスの）より上位の段階で、上流で',
     usage: 'defenses can be added higher up the chain...',
-    example: 'Defenses can be added higher up the chain before prompts reach the model.',
-    exampleJa: 'プロンプトがモデルに届く前の、処理チェーンのより上位の段階で防御を追加できます。'
+    etymology: 'chain（一連の鎖・処理パイプライン）の higher up（より上の輪）。川の上流と同じく、末端に届く前の早い上流段階'
   },
   {
     id: 'id-13',
@@ -661,8 +596,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'come back to',
     meaning: '（後の文脈で）再び触れる、立ち戻る',
     usage: 'We\'ll come back to this later...',
-    example: 'We\'ll come back to this architectural design in the next section.',
-    exampleJa: 'このアーキテクチャ設計については、次のセクションで再び詳しく取り上げます。'
+    etymology: 'come（来る）+ back（元の場所へ）+ to（〜へ）→ 今の話題から一度離れたあと、後ほど再びその場所へと戻ってくる'
   },
   {
     id: 'id-14',
@@ -670,8 +604,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'go off track',
     meaning: '脱線する、意図から外れる',
     usage: 'supervise the agent only when it goes off track.',
-    example: 'We supervise the agent only when it goes off track.',
-    exampleJa: 'エージェントが意図から外れて脱線したときにのみ、人間が介入して監督します。'
+    etymology: 'go（進む）+ off（外れて）+ track（レール、走路）→ 列車が本来敷かれたレールから車輪を踏み外して暴走するイメージ'
   },
   {
     id: 'id-15',
@@ -679,8 +612,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'in the first place',
     meaning: 'そもそも、初めから',
     usage: 'notice drift in the first place / keep ~/.aws out of reach in the first place.',
-    example: 'Keep critical credentials out of reach in the first place.',
-    exampleJa: 'そもそも最初から、重要な認証情報を手の届かない場所に隔離しておくべきです。'
+    etymology: 'first place（第1番目の順位・起点）。議論や手順を一番最初の原点に巻き戻して「初めからそもそも」と振り返る表現'
   },
   {
     id: 'id-16',
@@ -688,8 +620,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'out of reach',
     meaning: '手の届かないところに（隔離して）',
     usage: 'keep credentials out of reach',
-    example: 'We keep SSH keys strictly out of reach of the sandboxed agent.',
-    exampleJa: 'サンドボックス内のエージェントの手の届かない場所にSSHキーを厳重に隔離しています。'
+    etymology: 'out of（〜の範囲の外へ）+ reach（手が届く範囲）→ 手をいくら伸ばしても届かない高さや金庫の中に安全にしまうこと'
   },
   {
     id: 'id-17',
@@ -697,8 +628,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'pick ... up',
     meaning: '（情報や信号を）拾い上げる、検知する',
     usage: 'so we\'d notice if anything picked it up.',
-    example: 'We monitor egress traffic so we notice if any classifier picks up leaks.',
-    exampleJa: 'いずれかの分類器が漏洩を拾い上げた際にすぐに気づけるよう、送信トラフィックを監視します。'
+    etymology: 'pick（地面から拾う）+ up（上へ）。アンテナやセンサーがノイズの中から微弱な電波や異変をキャッチすること'
   },
   {
     id: 'id-18',
@@ -706,8 +636,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'anchor on',
     meaning: '〜を基準・前提とする、〜に立脚する',
     usage: 'Our model-layer defenses anchor on user intent.',
-    example: 'Our model-layer defenses anchor on user intent.',
-    exampleJa: '私たちのモデル層防御は、ユーザーの意図を確固たる前提・基準としています。'
+    etymology: 'anchor（錨・いかり）+ on（〜の上に）。船が流されないように海底に重い錨を降ろすように、確固たる基盤・基準に据える'
   },
   {
     id: 'id-19',
@@ -715,8 +644,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'be wary of',
     meaning: '〜を警戒する、用心する',
     usage: 'Be wary of custom components.',
-    example: 'Be wary of building custom sandboxing solutions when standard ones exist.',
-    exampleJa: '標準的な解決策が存在するときに、自前でカスタムのサンドボックスを作ることは警戒すべきです。'
+    etymology: 'wary（古英語 wær: 注意深い、awareと同根）。危険の兆候を見逃さないよう目を光らせて警戒すること'
   },
   {
     id: 'id-20',
@@ -724,8 +652,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'battle-tested',
     meaning: '実戦で鍛え上げられた、過酷な検証済みの',
     usage: 'battle-tested hypervisors and container runtimes',
-    example: 'Always rely on battle-tested hypervisors and container runtimes.',
-    exampleJa: '常に過酷な実戦で鍛え上げられたハイパーバイザとコンテナランタイムを頼りにしてください。'
+    etymology: 'battle（戦場・実戦）+ tested（試された）。机上の空論ではなく、実際の過酷な戦場や本番トラフィックで鍛え抜かれた'
   },
 
   // 4. 英文法・構文の特徴一覧 (10構文)
@@ -735,9 +662,8 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: '比例変化の倒置構文（As ..., so does S）',
     meaning: '「S1が〜するにつれて、S2もまた同様に〜する」',
     structure: 'As + S1 + V1, so + 助動詞/be動詞 + S2',
-    explanation: '通常の語順（their potential blast radius also grows）よりも、前半の主節と後半の響き合いが強調され、冒頭のキャッチコピーとして強い推進力を生む格調高い倒置表現です。',
-    example: 'As agents grow more capable, so does their potential blast radius.',
-    exampleJa: 'エージェントの能力が高まるにつれて、その潜在的な被害想定範囲も同様に拡大する。'
+    explanation: '前半の主節と後半の響き合いが強調され、冒頭のキャッチコピーとして強い推進力を生む格調高い倒置表現です。',
+    etymology: 'As（〜と同じように）と so（同様に）が対をなす古風で格調高い呼応構文。旧約聖書や古典英語の対比修辞学から現代の論説・格言に受け継がれている'
   },
   {
     id: 'gr-2',
@@ -745,9 +671,8 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: '仮定法過去完了による過去の対比（would have + 過去分詞）',
     meaning: '「（もし過去の前提であれば）〜していただろうに」',
     structure: '過去の時制を表す副詞句, S + would have + 過去分詞',
-    explanation: '「もし12か月前であれば、（あり得ないこととして）即座に却下していただろう（＝しかし今では日常茶飯事である）」という、過去の前提と現在の現実との鮮やかな対比を示します。if節がなくても副詞句が条件節の役割を果たしています。',
-    example: 'Twelve months ago, we\'d have rejected out of hand the idea of granting Claude access to developer terminals.',
-    exampleJa: '12か月前であれば、Claudeに開発ターミナルへのアクセスを与えるというアイデアは即座に却下していただろう。'
+    explanation: '「もし12か月前であれば、（あり得ないこととして）即座に却下していただろう（＝しかし今では日常茶飯事である）」という、過去の前提と現在の現実との鮮やかな対比を示します。',
+    etymology: 'would（意志の過去形）+ have p.p.（過去完了）。過去の時制の副詞句（Twelve months agoなど）が実質的なif節の役割を果たし、現在との劇的な変化を浮き彫りにする'
   },
   {
     id: 'gr-3',
@@ -755,19 +680,17 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: '「The + 比較級 ..., the + 比較級 ...」構文 ＋ 結果の分詞構文',
     meaning: '「〜すればするほど、ますます…になり、その結果〜となる」',
     structure: 'The + 比較級 + S1 + V1, the + 比較級 + S2 + V2, V-ing...',
-    explanation: '前半で「見れば見るほど注意を払わなくなる」という相関関係を提示し、後半のカンマ付き分詞構文（, becoming...）で「そしてその結果、次第に入念さを欠くようになっていく」という自然な因果の帰結を滑らかに付加しています。',
-    example: 'The more approvals a user sees, the less attention they pay to each, becoming over time much less diligent in their supervision.',
-    exampleJa: 'ユーザーは承認要求を目にすればするほど1つ1つへの注意を払わなくなり、結果として時間の経過とともに入念さを大幅に欠くようになる。'
+    explanation: '「見れば見るほど注意を払わなくなる」という相関関係を提示し、後半のカンマ付き分詞構文（, becoming...）で自然な因果の帰結を滑らかに付加しています。',
+    etymology: '構文内の「the」は定冠詞ではなく、古英語の指示代名詞の具格「þē（それだけ〜）」に由来。「Aの度合いが増すそれだけ、Bの度合いも増す」という計量関係を表す'
   },
   {
     id: 'gr-4',
     category: 'grammar',
     term: '程度・結果を表す「形容詞/副詞 + enough that 節」',
     meaning: '「〜するほど十分に…だ」',
-    structure: 'S + V + 形容詞 + enough that + S\' + V\' （※動名詞の否定 not deploying も含有）',
-    explanation: '学校文法では enough to do を習いますが、フォーマルな論説では enough that S V が頻出します。「導入しないことによる損失が大きくなり、その結果リスク計算が導入へと傾く」という論理的な帰結を明瞭に表現します。',
-    example: 'The cost of not deploying grows large enough that the risk-reward calculation tips heavily toward adoption.',
-    exampleJa: '配備を見送ることの損失が十分に大きくなり、その結果リスクとリターンの計算は導入へ大きく傾くことになる。'
+    structure: 'S + V + 形容詞 + enough that + S\' + V\'',
+    explanation: 'フォーマルな論説では enough to do よりも enough that S V が頻出します。「損失が十分に大きくなり、その結果としてリスク計算が傾く」という論理的帰結を明瞭に表現します。',
+    etymology: 'enough（古英語 genōg: 十分な）に結果を表すthat節が結合。so ... that構文と似た「結果・帰結」を導く客観的・学術的な構文形態'
   },
   {
     id: 'gr-5',
@@ -775,9 +698,8 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: '関係代名詞の目的格の省略（接触節）',
     meaning: '「誰も〜しようとすら思わなかった制約」',
     structure: '先行詞(restrictions) + [that/which (省略)] + nobody thought to write down',
-    explanation: '先行詞 restrictions の直後に関係代名詞が省略されています。名詞の直後に S + V を即座に続けることで、文のリズム感を損なわずに端的に修飾しています。',
-    example: 'The model succeeded by routing around restrictions nobody thought to write down.',
-    exampleJa: 'モデルは、誰も明文化しようとすら思わなかった制約を迂回することですり抜けた。'
+    explanation: '名詞の直後に S + V を即座に続けることで、文のリズム感を損なわずに端的に修飾しています。',
+    etymology: '英語史において中英語期から定着した「接触節（Contact Clause）」。関係代名詞をあえて挟まず名詞と動詞を直結させ、思考のスピード感を高める'
   },
   {
     id: 'gr-6',
@@ -785,9 +707,8 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: '非制限用法の関係代名詞（, which）による理由付け',
     meaning: '「〜であるが、これこそが…である理由だ」',
     structure: ', which is why + S + V',
-    explanation: 'カンマ以降の which が直前の文全体（「モデル層の保護は決して100%にはならないこと」）を先行詞とし、続く is why... で「だからこそ単体では成り立たないのだ」と論理的結論を導いています。',
-    example: 'Yet even with best-in-class defenses, protection in the model layer will never be 100% effective, which is why it can\'t stand alone.',
-    exampleJa: 'しかし最高水準の防御を施してもモデル層の保護が100%になることは決してなく、これこそが単独で成立し得ない理由である。'
+    explanation: 'カンマ以降の which が直前の文全体を先行詞とし、続く is why... で「だからこそ単体では成り立たないのだ」と論理的結論を導いています。',
+    etymology: 'whichが直前の「一文全体の事実」を丸ごと受け止め、等位接続詞（and that is why）のように機能して議論を前に進める論理的展開の要石'
   },
   {
     id: 'gr-7',
@@ -796,8 +717,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     meaning: '「その中で〜する環境 / その状況下で」',
     structure: '先行詞 + in which + 完全な文',
     explanation: '関係副詞 where を使うよりも、物理的・空間的な枠組みを厳密に特定する論文・技術仕様書らしいフォーマルな響きを持ちます。',
-    example: 'We isolate the environment in which the agent runs from the host operating system.',
-    exampleJa: 'エージェントが実行されるその環境を、ホスト側のオペレーティングシステムから完全に隔離する。'
+    etymology: '前置詞（in, under, with）が関係代名詞の前に位置することで、格関係が厳密に明示されるラテン語的で格調高い文語スタイル'
   },
   {
     id: 'gr-8',
@@ -805,9 +725,8 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: '対比・代替の「Rather than V-ing, S + V」構文',
     meaning: '「Aをするのではなく、Bをする」',
     structure: 'Rather than V-ing A, S + V + B',
-    explanation: 'what the agent does（実際に行う動的挙動）と what it\'s able to do（行い得る能力の限界・境界）という2つの名詞節が美しいパラレル構造（対称性）を形成しています。',
-    example: 'Rather than supervising what the agent does, we supervise what it\'s able to do by enforcing access boundaries.',
-    exampleJa: 'エージェントが実際に行う挙動を監視するのではなく、アクセス境界を強制することで行い得る能力そのものを制御する。'
+    explanation: 'what the agent does（事後動的挙動）と what it\'s able to do（能力の境界）という2つの名詞節が美しいパラレル構造（対称性）を形成しています。',
+    etymology: 'ratherは古英語 hræðe（早く、進んで）の比較級。「Aの方を早く選ぶのではなく、Bを選ぶ」という選択と優先順位の対比から発達'
   },
   {
     id: 'gr-9',
@@ -816,8 +735,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     meaning: '「原因がAであれ、Bであれ、Cであれ、それに関わらず」',
     structure: 'regardless of whether + S + is + [A, B, or C]',
     explanation: '3つ以上の選択肢を並列させ、いかなる要因であっても境界防御が破られてはならないという論理の普遍性と堅牢性を表現しています。',
-    example: 'The boundary must hold regardless of whether the cause is a user, a model finding a creative path, or an attacker.',
-    exampleJa: 'その原因がユーザーであれ、創造的な抜け道を見つけたモデルであれ、あるいは攻撃者であれ、境界は維持されなければならない。'
+    etymology: 'regard（注視する、考慮する）+ -less（〜のない）→「何があろうとそれに気を取られたり考慮に入れたりしない・普遍的に成り立つ」'
   },
   {
     id: 'gr-10',
@@ -826,7 +744,6 @@ export const LEARNING_ITEMS: LearningItem[] = [
     meaning: '「結果は〜の○%の削減であった（＝その結果○%減少した）」',
     structure: 'S(The result) was an 84% reduction in permission prompts...',
     explanation: '「As a result, prompts were reduced by 84%」と動詞で述べる代わりに、「The result was an 84% reduction...」と名詞を中心に据えることで、客観的なデータ・実績を淡々と力強く報告する英語特有の表現法です。',
-    example: 'The result was an 84% reduction in permission prompts without sacrificing security.',
-    exampleJa: 'その結果は、セキュリティを犠牲にすることなく承認プロンプトを84%削減するというものであった。'
+    etymology: '学術論文やビジネス報告で多用される名詞化（Nominalization）。感情や動作の主体を後退させ、客観的事実や測定数値を文の主役に押し出す効果を持つ'
   }
 ];

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { CategorySelect } from './components/CategorySelect';
 import { StudySession } from './components/StudySession';
@@ -8,11 +8,10 @@ import { LEARNING_ITEMS } from './data/learningItems';
 import type { LearningItem, CategoryType } from './data/learningItems';
 import {
   loadUserProgress,
-  saveUserProgress,
   recordStudySession,
   toggleBookmarkItem,
 } from './utils/storage';
-import type { UITheme, UserProgress } from './utils/storage';
+import type { UserProgress } from './utils/storage';
 
 export const App: React.FC = () => {
   const [progress, setProgress] = useState<UserProgress>(loadUserProgress());
@@ -22,19 +21,6 @@ export const App: React.FC = () => {
     categoryTitle: string;
     direction: 'en-ja' | 'ja-en';
   } | null>(null);
-
-  // テーマの初期化と反映
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', progress.theme);
-  }, [progress.theme]);
-
-  // テーマ変更
-  const handleChangeTheme = (newTheme: UITheme) => {
-    const updated = { ...progress, theme: newTheme };
-    setProgress(updated);
-    saveUserProgress(updated);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
 
   // ブックマークトグル
   const handleToggleBookmark = (id: string) => {
@@ -64,7 +50,6 @@ export const App: React.FC = () => {
       return;
     }
 
-    // シャッフル
     let sessionItems = [...pool];
     if (isShuffle) {
       sessionItems = sessionItems.sort(() => Math.random() - 0.5);
@@ -98,7 +83,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-200 flex flex-col font-sans pb-12">
+    <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] flex flex-col font-sans pb-10">
       {/* 共通ヘッダー */}
       <Header
         currentTab={activeSession ? 'home' : currentTab}
@@ -106,8 +91,6 @@ export const App: React.FC = () => {
           setActiveSession(null);
           setCurrentTab(tab);
         }}
-        theme={progress.theme}
-        onChangeTheme={handleChangeTheme}
       />
 
       {/* メインコンテンツエリア */}
@@ -145,7 +128,7 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* フッター著作表示・情報 */}
+      {/* フッター */}
       <footer className="w-full max-w-md mx-auto text-center text-[11px] text-[var(--text-muted)] py-4 mt-auto">
         Based on Anthropic Engineering Blog &bull; PWA Ready
       </footer>

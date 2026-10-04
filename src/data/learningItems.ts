@@ -13,11 +13,11 @@ export interface LearningItem {
 }
 
 export const CATEGORIES: { id: CategoryType; label: string; icon: string; count: number }[] = [
-  { id: 'all', label: 'すべて', icon: 'Layers', count: 72 },
-  { id: 'general_word', label: '重要語彙', icon: 'BookOpen', count: 39 },
-  { id: 'tech_word', label: 'AI・技術用語', icon: 'Cpu', count: 13 },
+  { id: 'general_word', label: '単語（重要語彙）', icon: 'BookOpen', count: 39 },
+  { id: 'tech_word', label: '技術用語', icon: 'Cpu', count: 13 },
   { id: 'idiom', label: '熟語・句動詞', icon: 'Sparkles', count: 20 },
   { id: 'grammar', label: '英文法・構文', icon: 'Compass', count: 10 },
+  { id: 'all', label: 'すべて', icon: 'Layers', count: 72 },
 ];
 
 export const LEARNING_ITEMS: LearningItem[] = [

@@ -23,10 +23,17 @@ export const StudySession: React.FC<StudySessionProps> = ({
   onBackToHome,
   direction = 'en-ja',
 }) => {
-  const [currentRoundItems, setCurrentRoundItems] = useState<LearningItem[]>(items);
+  const CHUNK_SIZE = 10;
+  const totalChunks = Math.ceil(items.length / CHUNK_SIZE);
+
+  const [currentChunkIndex, setCurrentChunkIndex] = useState(0);
+  const [currentRoundItems, setCurrentRoundItems] = useState<LearningItem[]>(items.slice(0, CHUNK_SIZE));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
+  // 各単語の1回目（復習除く）の正誤結果を記録
+  const [wordResults, setWordResults] = useState<Record<string, boolean>>({});
 
   // 1周目の不正解リスト（復習用）
   const [incorrectItems, setIncorrectItems] = useState<LearningItem[]>([]);
@@ -57,6 +64,10 @@ export const StudySession: React.FC<StudySessionProps> = ({
   const handleAnswer = (isCorrect: boolean) => {
     if (!currentItem) return;
 
+    if (!isReviewRound) {
+      setWordResults((prev) => ({ ...prev, [currentItem.id]: isCorrect }));
+    }
+
     if (isCorrect) {
       setTotalCorrect((prev) => prev + 1);
     } else {
@@ -71,17 +82,30 @@ export const StudySession: React.FC<StudySessionProps> = ({
       setCurrentIndex(nextIndex);
     } else {
       // 1周目終了判定
-      if (!isReviewRound && incorrectItems.length + (isCorrect ? 0 : 1) > 0) {
+      const isReviewNeeded = !isReviewRound && incorrectItems.length + (isCorrect ? 0 : 1) > 0;
+
+      if (isReviewNeeded) {
         const itemsToReview = isCorrect ? incorrectItems : [...incorrectItems, currentItem];
         setIsReviewRound(true);
         setCurrentRoundItems(itemsToReview);
         setCurrentIndex(0);
+        setIncorrectItems([]);
       } else {
-        // 全問終了
-        finishSession(
-          totalCorrect + (isCorrect ? 1 : 0),
-          totalIncorrect + (isCorrect ? 0 : 1)
-        );
+        // 現在のチャンクの学習完了
+        const nextChunkIndex = currentChunkIndex + 1;
+        if (nextChunkIndex < totalChunks) {
+          setCurrentChunkIndex(nextChunkIndex);
+          setIsReviewRound(false);
+          setCurrentRoundItems(items.slice(nextChunkIndex * CHUNK_SIZE, (nextChunkIndex + 1) * CHUNK_SIZE));
+          setCurrentIndex(0);
+          setIncorrectItems([]);
+        } else {
+          // 全問終了
+          finishSession(
+            totalCorrect + (isCorrect ? 1 : 0),
+            totalIncorrect + (isCorrect ? 0 : 1)
+          );
+        }
       }
     }
   };
@@ -130,6 +154,33 @@ export const StudySession: React.FC<StudySessionProps> = ({
           </div>
         </div>
 
+        <div className="text-left space-y-2 max-h-60 overflow-y-auto pr-2 rounded-xl bg-white/50 p-2">
+          {items.map((item) => {
+            const isCorrect = wordResults[item.id];
+            return (
+              <div key={item.id} className="flex items-center justify-between p-3 rounded-lg bg-[var(--bg-muted)] border border-transparent hover:border-[var(--border-color)]">
+                <div>
+                  <div className="font-bold text-[var(--text-main)]">{item.term}</div>
+                  <div className="text-xs text-[var(--text-muted)] mt-0.5">{item.meaning}</div>
+                </div>
+                <div>
+                  {isCorrect ? (
+                    <span className="flex items-center gap-1 text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded-md">
+                      <Check className="w-4 h-4 stroke-[3]" />
+                      正解
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-1 text-red-500 text-sm font-bold bg-red-50 px-2 py-1 rounded-md">
+                      <X className="w-4 h-4 stroke-[3]" />
+                      不正解
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
         <button
           onClick={onBackToHome}
           className="w-full py-3 px-4 rounded-xl bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-bold text-base transition flex items-center justify-center gap-2 cursor-pointer shadow-sm"
@@ -168,9 +219,16 @@ export const StudySession: React.FC<StudySessionProps> = ({
               </span>
             )}
           </div>
-          <span className="text-[var(--text-muted)]">
-            {currentIndex + 1} / {currentRoundItems.length}
-          </span>
+          <div className="flex items-center gap-2 text-[var(--text-muted)]">
+            {totalChunks > 1 && (
+              <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[11px] font-bold">
+                Set {currentChunkIndex + 1}/{totalChunks}
+              </span>
+            )}
+            <span>
+              {currentIndex + 1} / {currentRoundItems.length}
+            </span>
+          </div>
         </div>
 
         {/* 進捗バー */}

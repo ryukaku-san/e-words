@@ -28,7 +28,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'containment',
     pos: 'n.',
     meaning: '封じ込め、抑制、格納',
-    usage: '製品全体におけるClaudeの安全な制御',
+    usage: 'How we contain Claude across products（製品全体におけるClaudeの安全な制御）',
     etymology: 'con-（共に、完全に）+ tain（ラテン語 tenere: 保つ・掴む）+ -ment（名詞語尾）→「枠の中にすべて掴んで留めておくこと」'
   },
   {
@@ -37,7 +37,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'blast radius',
     pos: 'n. phr.',
     meaning: '被害想定範囲、影響範囲（元は爆発半径）',
-    usage: 'エージェントの誤動作・攻撃時の最大被害規模',
+    usage: 'the theoretical blast radius（エージェントの誤動作・攻撃時の最大被害規模）',
     etymology: 'blast（古英語 blæst: 突風・吹き荒れる爆風）+ radius（ラテン語: 車輪の輻/スポーク・光線・半径）→「爆風が届く円形の被害エリア」'
   },
   {
@@ -46,7 +46,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'cap',
     pos: 'v.',
     meaning: '上限を定める、抑える',
-    usage: '潜在的被害範囲を制限する',
+    usage: 'how to cap the blast radius（潜在的被害範囲を制限する）',
     etymology: '後期ラテン語 cappa（頭を覆うもの・帽子/ケープ）→「上から帽子や蓋を被せて、それ以上大きくならないよう抑える」'
   },
   {
@@ -55,7 +55,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'sufficient',
     pos: 'adj.',
     meaning: '十分な',
-    usage: '〜をダウンさせるのに十分な権限',
+    usage: 'access sufficient to take down an internal Anthropic service（〜をダウンさせるのに十分な権限）',
     etymology: 'sub-（下から、手元に）+ facere（ラテン語: 作る、成す）→「下から支えて要求水準を満たすだけの量がある」'
   },
   {
@@ -64,7 +64,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'deployment',
     pos: 'n.',
     meaning: '本番配備、導入、展開',
-    usage: 'モデルや製品の本番運用',
+    usage: 'The risk of these deployments...（モデルや製品の本番運用）',
     etymology: 'dis-（分離・解除）+ plicare（ラテン語: 折る、畳む）→「折りたたまれていた軍やシステムを解き放って前線に広げること」'
   },
   {
@@ -73,7 +73,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'safeguard',
     pos: 'n.',
     meaning: '安全対策、保護措置',
-    usage: 'モデルの訓練・運用における防御策',
+    usage: 'Progress on safeguards and model training...（モデルの訓練・運用における防御策）',
     etymology: 'safe（安全な: ラテン語 salvus 傷のない）+ guard（見張る、防ぐ）→「安全な状態を見張り維持するための盾」'
   },
   {
@@ -82,7 +82,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'autonomous',
     pos: 'adj.',
     meaning: '自律的な、自立型の',
-    usage: '自律型AIエージェント',
+    usage: 'an autonomous agent（自律型AIエージェント）',
     etymology: 'auto-（ギリシャ語: 自身の、自らの）+ nomos（法、規則）→「外部の命令ではなく、自分自身の法・規範に従って動く」'
   },
   {
@@ -91,7 +91,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'deem',
     pos: 'v.',
     meaning: '（〜だと）見なす、判断する',
-    usage: '公開するには危険すぎると判断された',
+    usage: 'whose blast radius was deemed too high to ship（公開するには危険すぎると判断された）',
     etymology: '古英語 dēman（裁く、判決を下す）。doom（運命、判決）と同根語で、熟慮の末に「〜だと見なす・判定する」という意味'
   },
   {
@@ -100,7 +100,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'fallible',
     pos: 'adj.',
     meaning: '誤りを犯しやすい、不完全な',
-    usage: '人間による確認作業はミスが起きやすい',
+    usage: 'we\'ve found the approach to be fallible.（人間による確認作業はミスが起きやすい）',
     etymology: 'fallere（ラテン語: 欺く、誤る、fail/faultの語源）+ -ible（可能・性質）→「つまずいたり騙されたりしやすい」'
   },
   {
@@ -109,7 +109,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'telemetry',
     pos: 'n.',
     meaning: '利用状況データ収集、遠隔測定・ログ',
-    usage: 'ユーザーの承認行動ログ',
+    usage: 'Our telemetry showed users approved roughly 93%...（ユーザーの承認行動ログ）',
     etymology: 'tele-（ギリシャ語: 遠く離れた: telephone, televisionと同根）+ -metry（測定術: metron/測る）→「遠く離れた場所の状態を自動測定・収集すること」'
   },
   {
@@ -118,7 +118,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'diligent',
     pos: 'adj.',
     meaning: '勤勉な、入念な、配慮の行き届いた',
-    usage: '承認作業への注意深さ',
+    usage: 'much less diligent in their supervision.（承認作業への注意深さ）',
     etymology: 'dis-（選り分けて）+ legere（選ぶ、好む）→「価値あるものを丁寧に選別して大事にするような、注意深く熱心な姿勢」'
   },
   {
@@ -127,7 +127,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'fatigue',
     pos: 'n.',
     meaning: '疲労、消耗',
-    usage: 'approval fatigue（承認疲れ・形骸化）',
+    usage: 'reduce this approval fatigue.（approval fatigue（承認疲れ・形骸化））',
     etymology: 'ラテン語 fatigare（疲れ果てさせる）。fatis（割れ目・息切れ）に由来し、過度の負担で限界に達した状態'
   },
   {
@@ -136,7 +136,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'probabilistic',
     pos: 'adj.',
     meaning: '確率論的な（↔ deterministic: 決定論的な）',
-    usage: 'モデルの出力は確率的で完全ではない',
+    usage: 'any probabilistic defense has a non-zero miss rate.（モデルの出力は確率的で完全ではない）',
     etymology: 'pro-（前に）+ probare（ラテン語: 試す、証明する、probeと同根）→「おそらく確からしい（probable）根拠に基づく」'
   },
   {
@@ -145,7 +145,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'enforce',
     pos: 'v.',
     meaning: '施行する、強制・適用する',
-    usage: 'アクセス境界を厳格に適用する',
+    usage: 'enforcing access boundaries（アクセス境界を厳格に適用する）',
     etymology: 'en-（中に加える、〜の状態にする）+ force（力、ラテン語 fortis/強い）→「権威や力を込めてルールを確実に効かせる」'
   },
   {
@@ -154,7 +154,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'egress',
     pos: 'n.',
     meaning: '送信、外部への出口（↔ ingress）',
-    usage: '外部通信・送信の制御（egress controls）',
+    usage: 'egress controls.（外部通信・送信の制御（egress controls））',
     etymology: 'e- / ex-（外へ）+ gradi（ラテン語: 歩む、進む: grade/progressと同根）→「内側から外へと歩み出ること・外部送信」'
   },
   {
@@ -163,7 +163,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'devote',
     pos: 'v.',
     meaning: '（時間・労力を）注ぐ、捧げる',
-    usage: '最も工数を注ぎ込んできた領域',
+    usage: 'where Anthropic engineering has devoted the most effort（最も工数を注ぎ込んできた領域）',
     etymology: 'de-（離れて、徹底的に）+ vovere（ラテン語: 誓う、vowと同根）→「誓いを立てて神や対象に一身を捧げる・集中投下する」'
   },
   {
@@ -172,7 +172,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'misuse',
     pos: 'n. / v.',
     meaning: '悪用、誤用',
-    usage: 'ユーザーによる悪用や不注意な操作',
+    usage: 'User misuse: A user—either maliciously or through carelessness...（ユーザーによる悪用や不注意な操作）',
     etymology: 'mis-（誤って、悪く）+ use（使う）→「本来の目的やルールから外れた間違った使い方」'
   },
   {
@@ -181,7 +181,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'misbehavior',
     pos: 'n.',
     meaning: '逸脱動作、不正動作',
-    usage: 'モデルが意図しない問題行動を起こすこと',
+    usage: 'Model misbehavior: The agent takes a harmful action no one asked for.（モデルが意図しない問題行動を起こすこと）',
     etymology: 'mis-（不正な）+ be-（強意）+ have（持っている、身を処する）→「あるべき規範から外れた不適切な立ち振る舞い」'
   },
   {
@@ -190,7 +190,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'aligned',
     pos: 'adj.',
     meaning: '（AIが人間の意図や価値観に）沿った、整合した',
-    usage: 'アライメント評価で適合度が高まっている',
+    usage: 'they have become more aligned on most behavior evaluations（アライメント評価で適合度が高まっている）',
     etymology: 'a- / ad-（〜に向かって）+ ligne（フランス語: 線、line）→「まっすぐ同じ直線・基準の上に並べること」'
   },
   {
@@ -199,7 +199,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'shrink',
     pos: 'v.',
     meaning: '縮小する、減少する',
-    usage: 'リスクが必ずしも減るとは限らない',
+    usage: 'this doesn\'t mean risk necessarily shrinks.（リスクが必ずしも減るとは限らない）',
     etymology: 'ゲルマン祖語 skrink-（しわが寄る、縮む）。物理的な収縮から数値・リスクの減少まで幅広く用いられる'
   },
   {
@@ -208,7 +208,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'exfiltrate',
     pos: 'v.',
     meaning: '（機密情報などを）不正持ち出しする',
-    usage: '外部へ認証情報を盗み出す',
+    usage: 'they can\'t be exfiltrated（外部へ認証情報を盗み出す）',
     etymology: 'ex-（外へ）+ filtrate（浸透する、ろ過する: filterと同根）→「防壁の隙間からこっそり外へしみ出させる・秘密裏に持ち出す」'
   },
   {
@@ -217,7 +217,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'perimeter',
     pos: 'n.',
     meaning: '防御境界線、周囲',
-    usage: '厳格な境界線を敷く',
+    usage: 'A tight perimeter also means you can relax oversight.（厳格な境界線を敷く）',
     etymology: 'peri-（ギリシャ語: 周囲をまわる）+ metron（測る）→「周囲をぐるりと一周測った輪郭・外周の防衛境界線」'
   },
   {
@@ -226,7 +226,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'unattended',
     pos: 'adj.',
     meaning: '監視なしの、無人の',
-    usage: '人間の常時承認なしで実行する',
+    usage: 'so that the agent can run unattended（人間の常時承認なしで実行する）',
     etymology: 'un-（否定）+ at-（〜へ）+ tendere（ラテン語: 意識を伸ばす、注意を払う）→「誰の意識・視線も向けられていない状態」'
   },
   {
@@ -235,7 +235,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'susceptibility',
     pos: 'n.',
     meaning: '影響を受けやすさ、脆弱性',
-    usage: 'プロンプトインジェクションへの耐性度',
+    usage: 'which tests susceptibility to prompt injection（プロンプトインジェクションへの耐性度）',
     etymology: 'sub-（下から）+ capere（ラテン語: 掴む、受け取る）+ -ibility →「下からまともに刺激や攻撃を受け止めやすい性質」'
   },
   {
@@ -244,7 +244,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'overeager',
     pos: 'adj.',
     meaning: '勇み足の、熱心すぎる',
-    usage: '先走りすぎたエージェントの挙動',
+    usage: 'roughly 83% of overeager behaviors（先走りすぎたエージェントの挙動）',
     etymology: 'over-（過剰に）+ eager（ラテン語 acer: 鋭利な、熱心な）→「やる気が鋭すぎて空回りし、先走ってしまう」'
   },
   {
@@ -253,7 +253,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'ephemeral',
     pos: 'adj.',
     meaning: '一時的な、セッション限りの',
-    usage: 'セッション終了時に消去されるファイルシステム',
+    usage: 'the filesystem is ephemeral (per-session).（セッション終了時に消去されるファイルシステム）',
     etymology: 'epi-（〜の間だけ）+ hemera（ギリシャ語: 一日）→「カゲロウのようにたった一日限りの儚い命・一時的な環境」'
   },
   {
@@ -262,7 +262,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'adversary',
     pos: 'n.',
     meaning: '敵対者、サイバー攻撃者',
-    usage: '豊富な資金・スキルを持つ攻撃者',
+    usage: 'hardened against well-resourced adversaries（豊富な資金・スキルを持つ攻撃者）',
     etymology: 'ad-（〜に対して）+ vertere（ラテン語: 向きを変える、vers-）→「自分と真っ向から反対を向いて立ち塞がる相手」'
   },
   {
@@ -271,7 +271,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'consequential',
     pos: 'adj.',
     meaning: '重大な結果を招く、深刻な',
-    usage: '最も影響の大きかったセキュリティインシデント',
+    usage: 'our most consequential incident.（最も影響の大きかったセキュリティインシデント）',
     etymology: 'con-（共に）+ sequi（ラテン語: 続く、従う: sequenceと同根）→「それに伴って極めて重い結果がついて回る」'
   },
   {
@@ -280,7 +280,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'tractable',
     pos: 'adj.',
     meaning: '扱いやすい、現実的に解決可能な',
-    usage: '技術者相手だからこそ成立する現実的解決策',
+    usage: 'This is only a tractable solution for Claude Code because...（技術者相手だからこそ成立する現実的解決策）',
     etymology: 'tractare（ラテン語: 引く、引っ張って操る: tractorと同根）+ -able →「手元で手綱を引いてコントロールできる・解決可能」'
   },
   {
@@ -289,7 +289,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'mitigate',
     pos: 'v.',
     meaning: '軽減する、緩和する',
-    usage: '不注意な承認を緩和・抑制する',
+    usage: 'mitigate incautious approvals（不注意な承認を緩和・抑制する）',
     etymology: 'mitis（ラテン語: 穏やかな、柔らかい）+ agere（動かす、導く）→「固く険しい事態を柔らかく和らげる」'
   },
   {
@@ -298,7 +298,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'incautious',
     pos: 'adj.',
     meaning: '不注意な、軽率な',
-    usage: 'よく確認せずに行う安易な承認',
+    usage: 'mitigate incautious approvals（よく確認せずに行う安易な承認）',
     etymology: 'in-（否定）+ cautio（用心、警戒: cautionの語源）→「警戒心を解いてしまい、不用意で軽率な」'
   },
   {
@@ -307,7 +307,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'auditable',
     pos: 'adj.',
     meaning: '監査・検証可能な',
-    usage: 'コードが公開され第三者が検証できる',
+    usage: 'so the boundary is auditable.（コードが公開され第三者が検証できる）',
     etymology: 'audire（ラテン語: 聴く、audioと同根）+ -able →「元は公聴会で証言を耳で聴いて確かめたことから、第三者が監査・検証できること」'
   },
   {
@@ -316,7 +316,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'drift',
     pos: 'n.',
     meaning: '（意図からの）逸脱、ズレ',
-    usage: 'エージェントの挙動が目標からずれること',
+    usage: 'notice drift in the first place.（エージェントの挙動が目標からずれること）',
     etymology: 'drive（強く押す、駆り立てる）から派生。風や潮の流れに押し流され、元の進行方向から徐々にズレていく現象'
   },
   {
@@ -325,7 +325,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'consent',
     pos: 'v. / n.',
     meaning: '同意する / 承認、同意',
-    usage: 'ユーザーの同意を得る前の実行',
+    usage: 'before the user has consented to anything.（ユーザーの同意を得る前の実行）',
     etymology: 'con-（共に）+ sentire（ラテン語: 感じる、senseと同根）→「同じ感覚・思いを共有して認める」'
   },
   {
@@ -334,7 +334,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'defer',
     pos: 'v.',
     meaning: '延期する、後回しにする',
-    usage: 'ユーザー承認まで処理を遅延させる',
+    usage: 'defer parsing and execution of project-local configuration until...（ユーザー承認まで処理を遅延させる）',
     etymology: 'de-（離れて、脇へ）+ ferre（ラテン語: 運ぶ）→「決断や行動を脇へ運び置いて、あとへ先延ばしにする」'
   },
   {
@@ -343,7 +343,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'implicitly',
     pos: 'adv.',
     meaning: '暗黙のうちに、無条件に',
-    usage: 'ローカルだからと暗黙に信用してはならない',
+    usage: 'They shouldn\'t be implicitly trusted just because they feel local（ローカルだからと暗黙に信用してはならない）',
     etymology: 'im- / in-（内側に）+ plicare（ラテン語: 折りたたむ）→「外に明文化せず、内側に折りたたんで包み隠しているさま」'
   },
   {
@@ -352,7 +352,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'anomalous',
     pos: 'adj.',
     meaning: '異常な、変則的な',
-    usage: '判定器が検知すべき不審な兆候',
+    usage: 'there\'s nothing anomalous for a classifier to catch.（判定器が検知すべき不審な兆候）',
     etymology: 'an-（否定）+ homalos（ギリシャ語: 均等な、平坦な: homeo-と同根）→「いつもと同じ均一な状態ではなく、デコボコと狂っている」'
   },
   {
@@ -361,7 +361,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'provenance',
     pos: 'n.',
     meaning: '出所、来歴、真正性',
-    usage: 'リクエストの発信元が正当かどうかの出所',
+    usage: 'because only the VM knows provenance（リクエストの発信元が正当かどうかの出所）',
     etymology: 'pro-（前へ）+ venire（ラテン語: 来る）→「前をたどるとどこからやって来たのかという起源・出所」'
   },
   {
@@ -370,7 +370,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'opaque',
     pos: 'adj.',
     meaning: '不透明な、内部を窺い知れない',
-    usage: '外部監視ツールから中身が見えないVM',
+    usage: 'Claude Cowork is an opaque hypervisor process.（外部監視ツールから中身が見えないVM）',
     etymology: 'ラテン語 opacus（日陰の、暗い、光を通さない）→「光が通らず向こう側や内部の様子が一切見えないこと」'
   },
 
@@ -381,7 +381,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'human-in-the-loop (HITL)',
     pos: 'n.',
     meaning: '人間がプロセスの途中で介在・承認する仕組み',
-    usage: 'エージェントの危険な操作を人間が確認して承認するアーキテクチャ',
+    usage: 'supervise the agent\'s behavior via a human-in-the-loop.（エージェントの危険な操作を人間が確認して承認するアーキテクチャ）',
     etymology: 'human（人間）+ in the loop（一連の制御ループの内側に加わっていること）→ 自動制御の輪の中に人間が介在する構造'
   },
   {
@@ -390,7 +390,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'sandbox',
     pos: 'n.',
     meaning: '外部に影響を与えないよう隔離された安全な実行環境',
-    usage: 'コード実行やファイルアクセスを閉じ込める隔離領域',
+    usage: 'enforcing access boundaries through, for example, sandboxes（コード実行やファイルアクセスを閉じ込める隔離領域）',
     etymology: 'sand（砂）+ box（箱）→「子供が砂場の中でいくら砂を撒き散らしても周囲の部屋を汚さない」という比喩から'
   },
   {
@@ -399,7 +399,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'prompt injection',
     pos: 'n.',
     meaning: '悪意あるプロンプトを入力してモデルの制限を突破・乗っ取る攻撃',
-    usage: '外部データやWebページに仕込まれた指示によるAIのハイジャック',
+    usage: 'which tests susceptibility to prompt injection（外部データやWebページに仕込まれた指示によるAIのハイジャック）',
     etymology: 'SQL injectionの派生。in-（中へ）+ jacere（ラテン語: 投げる）→ 本来の指示文の中に悪意の指示を「注射・注入」してねじ込む攻撃'
   },
   {
@@ -408,7 +408,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'runtime',
     pos: 'n.',
     meaning: 'プログラムが動作する実行環境基盤',
-    usage: 'コンテナやエージェントコードを実行する基盤層',
+    usage: 'attacks on the agent\'s runtime, orchestration layer, or proxy.（コンテナやエージェントコードを実行する基盤層）',
     etymology: 'run（走る、実行する）+ time（時・環境）→ コンパイル時（compile time）の対義語で、実際に動いている期間とその基盤'
   },
   {
@@ -417,7 +417,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'orchestration',
     pos: 'n.',
     meaning: '複数システムやコンテナ群を自動統合・調整する仕組み',
-    usage: 'エージェントタスク用の仮想環境やツールの自動プロビジョニング',
+    usage: 'orchestration layer（エージェントタスク用の仮想環境やツールの自動プロビジョニング）',
     etymology: 'orchestra（オーケストラ管弦楽団）から。指揮者が多くの楽器を統率して1つの曲を奏でるように、多数のサーバーやVMを協調させる'
   },
   {
@@ -426,7 +426,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'classifier / probe',
     pos: 'n.',
     meaning: '入力や内部状態を監視・分類するための検出モデル・測定器',
-    usage: 'プロンプトや出力の危険度をリアルタイムに検知する補助モデル',
+    usage: 'system prompts, classifiers, probes, and training modifications.（プロンプトや出力の危険度をリアルタイムに検知する補助モデル）',
     etymology: 'classify（等級・クラスに分ける）+ probe（ラテン語 probare/調べる: 内部に探針を刺して探る器具）'
   },
   {
@@ -435,7 +435,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'red teaming',
     pos: 'n.',
     meaning: '攻撃側の視点でシステムの弱点や脆弱性を検証する疑似攻撃演習',
-    usage: '社内の専門チームがエージェントの防御網を突破しようと試みるテスト',
+    usage: 'during a controlled internal red-team exercise（社内の専門チームがエージェントの防御網を突破しようと試みるテスト）',
     etymology: '軍事演習で自軍を守備隊「青軍（Blue Team）」、敵の仮想敵国を「赤軍（Red Team）」と呼んだことに由来'
   },
   {
@@ -444,7 +444,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'MCP (Model Context Protocol)',
     pos: 'n.',
     meaning: 'モデルと各種データ・ツールをつなぐオープンプロトコル',
-    usage: 'ClaudeがファイルシステムやGit、APIなどのツールと安全に連携する標準規格',
+    usage: 'MCP servers, third-party plugins, and web search tools（ClaudeがファイルシステムやGit、APIなどのツールと安全に連携する標準規格）',
     etymology: 'Model（AIモデル）+ Context（文脈・情報）+ Protocol（規約）→ AIが外部ツールやデータソースの文脈を安全にやり取りする取り決め'
   },
   {
@@ -453,7 +453,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'payload',
     pos: 'n.',
     meaning: 'サイバー攻撃において実際に悪意ある処理を実行する本体データ',
-    usage: 'インジェクション攻撃でシステムを侵害するコードやコマンド',
+    usage: 'The payload was now ambient.（インジェクション攻撃でシステムを侵害するコードやコマンド）',
     etymology: 'pay（報酬、実入り）+ load（荷物）→ 航空宇宙・ロケットで燃料や機体以外の「実際に運ぶ有償の積載物・弾頭」を指す軍事用語がITに転用'
   },
   {
@@ -462,7 +462,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'canary string',
     pos: 'n.',
     meaning: '情報漏洩や不正侵入を検知するためにあらかじめ仕込んでおく特定の目印文字列',
-    usage: 'エージェントが機密データを外部送信していないかを検知するトラップ',
+    usage: 'We added a canary string to the thread so we\'d notice...（エージェントが機密データを外部送信していないかを検知するトラップ）',
     etymology: 'かつて炭鉱夫が有毒ガス（無色無臭）の発生を早く察知するために「カナリアの鳥籠」を持ち込んだ歴史的事実（炭鉱のカナリア）から'
   },
   {
@@ -471,7 +471,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'hypervisor',
     pos: 'n.',
     meaning: '仮想マシン（VM）を起動・制御するための基盤仮想化ソフトウェア',
-    usage: 'セキュアな隔離境界を提供する仮想化レイヤー',
+    usage: 'the platform\'s vendor hypervisor（セキュアな隔離境界を提供する仮想化レイヤー）',
     etymology: 'hyper-（上位の、超えた）+ supervisor（監督者）→ OS（Supervisor）のさらに「上位でOSを監督・統括するもの」'
   },
   {
@@ -480,7 +480,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'EDR (Endpoint Detection and Response)',
     pos: 'n.',
     meaning: '端末の挙動を監視し脅威を検知・対処するセキュリティシステム',
-    usage: 'VMやホスト端末での不審なプロセス実行やネットワーク接続の監視',
+    usage: 'Why can\'t our EDR see inside?（VMやホスト端末での不審なプロセス実行やネットワーク接続の監視）',
     etymology: 'Endpoint（末端のPCやサーバー）+ Detection（検知）+ Response（即座の隔離などの対処）'
   },
   {
@@ -489,7 +489,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'MITM (Man-in-the-Middle) proxy',
     pos: 'n.',
     meaning: '通信の間に割り込んで中継・検査・改変を行うプロキシ',
-    usage: 'エージェントのアウトバウンドHTTPリクエストを傍受・検証する仕組み',
+    usage: 'a defensive man-in-the-middle proxy inside the VM（エージェントのアウトバウンドHTTPリクエストを傍受・検証する仕組み）',
     etymology: 'Man in the Middle（中間者）。送信者と受信者の「真ん中に男が割り込む」攻撃手法を、防御側の通信検査に転用したもの'
   },
 

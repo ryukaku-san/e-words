@@ -127,7 +127,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'fatigue',
     pos: 'n.',
     meaning: '疲労、消耗',
-    usage: 'reduce this approval fatigue.（approval fatigue（承認疲れ・形骸化））',
+    usage: 'reduce this approval fatigue.（承認疲れ・形骸化）',
     etymology: 'ラテン語 fatigare（疲れ果てさせる）。fatis（割れ目・息切れ）に由来し、過度の負担で限界に達した状態'
   },
   {
@@ -154,7 +154,7 @@ export const LEARNING_ITEMS: LearningItem[] = [
     term: 'egress',
     pos: 'n.',
     meaning: '送信、外部への出口（↔ ingress）',
-    usage: 'egress controls.（外部通信・送信の制御（egress controls））',
+    usage: 'egress controls.（外部通信・送信の制御）',
     etymology: 'e- / ex-（外へ）+ gradi（ラテン語: 歩む、進む: grade/progressと同根）→「内側から外へと歩み出ること・外部送信」'
   },
   {

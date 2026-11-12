@@ -311,7 +311,13 @@ export const StudySession: React.FC<StudySessionProps> = ({
             <div className="mt-6 flex items-center justify-center gap-1.5 text-xs text-[var(--text-muted)]">
               <Layers className="w-4 h-4" />
               <span>
-                {direction === 'en-ja' ? 'タップで意味と語源を表示' : 'タップで正解の英語と語源を表示'}
+                {direction === 'en-ja'
+                  ? currentItem.etymology
+                    ? 'タップで意味と語源を表示'
+                    : 'タップで意味を表示'
+                  : currentItem.etymology
+                    ? 'タップで正解の英語と語源を表示'
+                    : 'タップで正解の英語を表示'}
               </span>
             </div>
           )}

@@ -1,12 +1,14 @@
 import React from 'react';
-import { Calendar, Layers, BookOpen } from 'lucide-react';
+import { Calendar, Layers, BookOpen, Home } from 'lucide-react';
 
 interface HeaderProps {
   currentTab: 'home' | 'calendar' | 'list';
   onSelectTab: (tab: 'home' | 'calendar' | 'list') => void;
+  deckLabel?: string;
+  onGoTop?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab }) => {
+export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab, deckLabel, onGoTop }) => {
   return (
     <header className="w-full max-w-md mx-auto py-3 px-3 space-y-3">
       {/* ロゴ */}
@@ -20,10 +22,22 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab }) => {
               E-Words
             </h1>
             <span className="text-[10px] text-[var(--text-muted)] font-medium">
-              Tech & Essay English
+              {deckLabel ?? 'Tech & Essay English'}
             </span>
           </div>
         </div>
+
+        {onGoTop && (
+          <button
+            type="button"
+            onClick={onGoTop}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] text-[11px] font-bold text-[var(--text-muted)] hover:text-[var(--text-main)] transition cursor-pointer"
+            title="トップページへ戻る"
+          >
+            <Home className="w-3.5 h-3.5" />
+            <span>トップ</span>
+          </button>
+        )}
       </div>
 
       {/* ナビゲーションタブ */}

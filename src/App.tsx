@@ -4,8 +4,12 @@ import { CategorySelect } from './components/CategorySelect';
 import { StudySession } from './components/StudySession';
 import { StudyCalendar } from './components/StudyCalendar';
 import { WordList } from './components/WordList';
+import { TopPage } from './components/TopPage';
+import { TargetRangeSelect } from './components/TargetRangeSelect';
+import type { TargetRange } from './components/TargetRangeSelect';
 import { LEARNING_ITEMS } from './data/learningItems';
 import type { LearningItem, CategoryType } from './data/learningItems';
+import { TARGET1900_ITEMS } from './data/target1900';
 import {
   loadUserProgress,
   recordStudySession,
@@ -13,8 +17,12 @@ import {
 } from './utils/storage';
 import type { UserProgress } from './utils/storage';
 
+type DeckType = 'article' | 'target1900';
+
 export const App: React.FC = () => {
   const [progress, setProgress] = useState<UserProgress>(loadUserProgress());
+  const [page, setPage] = useState<'top' | 'deck'>('top');
+  const [deck, setDeck] = useState<DeckType>('article');
   const [currentTab, setCurrentTab] = useState<'home' | 'calendar' | 'list'>('home');
   const [activeSession, setActiveSession] = useState<{
     items: LearningItem[];
@@ -75,12 +83,76 @@ export const App: React.FC = () => {
     });
   };
 
+  // トップページで教材を選択
+  const handleSelectDeck = (d: DeckType) => {
+    setDeck(d);
+    setActiveSession(null);
+    setCurrentTab('home');
+    setPage('deck');
+  };
+
+  // ターゲット1900の範囲学習を開始
+  const handleStartTargetRange = (
+    range: TargetRange | null,
+    isShuffle: boolean,
+    direction: 'en-ja' | 'ja-en',
+    bookmarkOnly: boolean
+  ) => {
+    let pool: LearningItem[] = [];
+    let title = '';
+
+    if (bookmarkOnly) {
+      pool = TARGET1900_ITEMS.filter((item) => progress.bookmarks.includes(item.id));
+      title = 'ターゲット1900 苦手・ブックマーク';
+    } else if (range) {
+      pool = TARGET1900_ITEMS.slice(range.startNo - 1, range.endNo);
+      title = `ターゲット1900 No.${range.startNo}–${range.endNo}`;
+    }
+
+    if (pool.length === 0) {
+      alert('該当する問題がありません。');
+      return;
+    }
+
+    let sessionItems = [...pool];
+    if (isShuffle) {
+      sessionItems = sessionItems.sort(() => Math.random() - 0.5);
+    }
+
+    setActiveSession({
+      items: sessionItems,
+      categoryTitle: title,
+      direction,
+    });
+  };
+
+  const articleBookmarkCount = LEARNING_ITEMS.filter((item) =>
+    progress.bookmarks.includes(item.id)
+  ).length;
+  const targetBookmarkCount = TARGET1900_ITEMS.filter((item) =>
+    progress.bookmarks.includes(item.id)
+  ).length;
+
   // セッション完了時のカレンダー記録
   const handleFinishSession = (correctCount: number, incorrectCount: number) => {
     if (!activeSession) return;
     const updated = recordStudySession(correctCount, incorrectCount, activeSession.categoryTitle);
     setProgress(updated);
   };
+
+  // トップページ（教材選択）
+  if (page === 'top') {
+    return (
+      <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] flex flex-col font-sans pb-10">
+        <main className="flex-1 w-full max-w-md mx-auto px-3 py-2 flex flex-col justify-start">
+          <TopPage onSelectDeck={handleSelectDeck} />
+        </main>
+        <footer className="w-full max-w-md mx-auto text-center text-[11px] text-[var(--text-muted)] py-4 mt-auto">
+          E-Words &bull; PWA Ready
+        </footer>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] flex flex-col font-sans pb-10">
@@ -90,6 +162,11 @@ export const App: React.FC = () => {
         onSelectTab={(tab) => {
           setActiveSession(null);
           setCurrentTab(tab);
+        }}
+        deckLabel={deck === 'target1900' ? 'ターゲット1900' : '英語記事タイトル'}
+        onGoTop={() => {
+          setActiveSession(null);
+          setPage('top');
         }}
       />
 
@@ -107,12 +184,18 @@ export const App: React.FC = () => {
           />
         ) : (
           <>
-            {currentTab === 'home' && (
-              <CategorySelect
-                onStartCategory={handleStartCategory}
-                bookmarkCount={progress.bookmarks.length}
-              />
-            )}
+            {currentTab === 'home' &&
+              (deck === 'target1900' ? (
+                <TargetRangeSelect
+                  onStartRange={handleStartTargetRange}
+                  bookmarkCount={targetBookmarkCount}
+                />
+              ) : (
+                <CategorySelect
+                  onStartCategory={handleStartCategory}
+                  bookmarkCount={articleBookmarkCount}
+                />
+              ))}
 
             {currentTab === 'calendar' && (
               <StudyCalendar progress={progress} />
@@ -130,7 +213,7 @@ export const App: React.FC = () => {
 
       {/* フッター */}
       <footer className="w-full max-w-md mx-auto text-center text-[11px] text-[var(--text-muted)] py-4 mt-auto">
-        Based on Anthropic Engineering Blog &bull; PWA Ready
+        E-Words &bull; PWA Ready
       </footer>
     </div>
   );

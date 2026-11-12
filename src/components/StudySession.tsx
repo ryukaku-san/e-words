@@ -228,6 +228,15 @@ export const StudySession: React.FC<StudySessionProps> = ({
             <span>
               {currentIndex + 1} / {currentRoundItems.length}
             </span>
+            <button
+              type="button"
+              onClick={onBackToHome}
+              className="flex items-center gap-0.5 px-2 py-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] text-[11px] font-bold text-[var(--text-muted)] hover:text-red-500 hover:border-red-200 transition cursor-pointer"
+              title="学習を途中でやめる（記録は保存されません）"
+            >
+              <X className="w-3.5 h-3.5" />
+              <span>やめる</span>
+            </button>
           </div>
         </div>
 
@@ -314,10 +323,14 @@ export const StudySession: React.FC<StudySessionProps> = ({
                 {direction === 'en-ja'
                   ? currentItem.etymology
                     ? 'タップで意味と語源を表示'
-                    : 'タップで意味を表示'
+                    : currentItem.usage
+                      ? 'タップで意味と例文を表示'
+                      : 'タップで意味を表示'
                   : currentItem.etymology
                     ? 'タップで正解の英語と語源を表示'
-                    : 'タップで正解の英語を表示'}
+                    : currentItem.usage
+                      ? 'タップで正解の英語と例文を表示'
+                      : 'タップで正解の英語を表示'}
               </span>
             </div>
           )}

@@ -17,7 +17,7 @@ export const CATEGORIES: { id: CategoryType; label: string; icon: string; count:
   { id: 'tech_word', label: '技術用語', icon: 'Cpu', count: 13 },
   { id: 'idiom', label: '熟語・句動詞', icon: 'Sparkles', count: 20 },
   { id: 'grammar', label: '英文法・構文', icon: 'Compass', count: 10 },
-  { id: 'all', label: 'すべて', icon: 'Layers', count: 72 },
+  { id: 'all', label: 'すべて', icon: 'Layers', count: 82 },
 ];
 
 export const LEARNING_ITEMS: LearningItem[] = [

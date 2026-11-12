@@ -125,7 +125,7 @@ export const TargetRangeSelect: React.FC<TargetRangeSelectProps> = ({
                 </div>
                 <div className="min-w-0">
                   <div className="font-bold text-sm text-[var(--text-main)] truncate">
-                    No.{range.startNo} 〜 No.{range.endNo}
+                    No.{range.startNo}〜{range.endNo}
                   </div>
                   <div className="text-[11px] text-[var(--text-muted)]">
                     {range.endNo - range.startNo + 1} 問

@@ -137,7 +137,10 @@ export const TargetRangeSelect: React.FC<TargetRangeSelectProps> = ({
                 {renderOptionButtons(key)}
                 <button
                   type="button"
-                  onClick={() => onStartRange(range, opt.isShuffle, opt.direction, false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onStartRange(range, opt.isShuffle, opt.direction, false);
+                  }}
                   className="p-2 rounded-lg bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white shadow-sm transition cursor-pointer flex items-center justify-center group-hover:scale-105"
                   title="学習を始める"
                   aria-label="スタート"
@@ -175,7 +178,10 @@ export const TargetRangeSelect: React.FC<TargetRangeSelectProps> = ({
                   {renderOptionButtons(key, true)}
                   <button
                     type="button"
-                    onClick={() => onStartRange(null, opt.isShuffle, opt.direction, true)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onStartRange(null, opt.isShuffle, opt.direction, true);
+                    }}
                     className="p-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition cursor-pointer flex items-center justify-center group-hover:scale-105"
                     title="学習を始める"
                   >

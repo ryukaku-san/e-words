@@ -124,7 +124,10 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({ onStartCategory,
                 {/* 学習開始（再生）ボタン */}
                 <button
                   type="button"
-                  onClick={() => onStartCategory(cat.id, opt.isShuffle, opt.direction, false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onStartCategory(cat.id, opt.isShuffle, opt.direction, false);
+                  }}
                   className="p-2 rounded-lg bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white shadow-sm transition cursor-pointer flex items-center justify-center group-hover:scale-105"
                   title="学習を始める"
                   aria-label="スタート"
@@ -183,7 +186,10 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({ onStartCategory,
 
                 <button
                   type="button"
-                  onClick={() => onStartCategory('all', opt.isShuffle, opt.direction, true)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onStartCategory('all', opt.isShuffle, opt.direction, true);
+                  }}
                   className="p-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition cursor-pointer flex items-center justify-center group-hover:scale-105"
                   title="学習を始める"
                 >

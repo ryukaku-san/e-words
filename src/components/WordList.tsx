@@ -165,6 +165,14 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
                       {item.explanation || item.usage}
                     </div>
                   )}
+
+                  {item.category === 'target1900' && (
+                    <div className="text-[var(--text-muted)] leading-relaxed">
+                      <span className="font-semibold text-[var(--text-main)]">📗 出典: </span>
+                      英単語ターゲット1900（6訂版） No.{item.id.replace('t-', '')}
+                      {item.pos && <> ／ 品詞: {item.pos}</>}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

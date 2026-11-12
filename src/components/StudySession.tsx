@@ -10,6 +10,7 @@ interface StudySessionProps {
   bookmarks: string[];
   onToggleBookmark: (id: string) => void;
   onFinishSession: (correctCount: number, incorrectCount: number) => void;
+  onQuitSession: (correctCount: number, incorrectCount: number) => void;
   onBackToHome: () => void;
   direction?: 'en-ja' | 'ja-en';
 }
@@ -20,6 +21,7 @@ export const StudySession: React.FC<StudySessionProps> = ({
   bookmarks,
   onToggleBookmark,
   onFinishSession,
+  onQuitSession,
   onBackToHome,
   direction = 'en-ja',
 }) => {
@@ -230,9 +232,9 @@ export const StudySession: React.FC<StudySessionProps> = ({
             </span>
             <button
               type="button"
-              onClick={onBackToHome}
+              onClick={() => onQuitSession(totalCorrect, totalIncorrect)}
               className="flex items-center gap-0.5 px-2 py-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] text-[11px] font-bold text-[var(--text-muted)] hover:text-red-500 hover:border-red-200 transition cursor-pointer"
-              title="学習を途中でやめる（記録は保存されません）"
+              title="学習を途中でやめる（ここまでの記録はカレンダーに残ります）"
             >
               <X className="w-3.5 h-3.5" />
               <span>やめる</span>

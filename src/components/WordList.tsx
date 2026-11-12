@@ -2,7 +2,16 @@ import React, { useState, useMemo } from 'react';
 import { Search, Volume2, Star } from 'lucide-react';
 import { LEARNING_ITEMS, CATEGORIES } from '../data/learningItems';
 import type { CategoryType } from '../data/learningItems';
+import { TARGET1900_ITEMS } from '../data/target1900';
 import { speakEnglish } from '../utils/speech';
+
+const ALL_ITEMS = [...LEARNING_ITEMS, ...TARGET1900_ITEMS];
+
+const FILTER_CHIPS: { id: CategoryType; label: string }[] = [
+  ...CATEGORIES.filter((c) => c.id !== 'all').map((c) => ({ id: c.id, label: c.label })),
+  { id: 'target1900', label: 'ターゲット1900' },
+  { id: 'all', label: 'すべて' },
+];
 
 interface WordListProps {
   bookmarks: string[];
@@ -15,7 +24,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const filteredItems = useMemo(() => {
-    return LEARNING_ITEMS.filter((item) => {
+    return ALL_ITEMS.filter((item) => {
       const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
@@ -46,7 +55,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
 
       {/* カテゴリフィルタタブ */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar text-xs">
-        {CATEGORIES.map((cat) => (
+        {FILTER_CHIPS.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
@@ -86,6 +95,11 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
                     <span className="font-bold text-base text-[var(--text-main)]">
                       {item.term}
                     </span>
+                    {item.category === 'target1900' && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-50 text-[var(--primary)] font-mono font-semibold">
+                        No.{item.id.replace('t-', '')}
+                      </span>
+                    )}
                     {item.pos && (
                       <span className="text-[11px] px-1.5 py-0.5 rounded bg-[var(--bg-muted)] text-[var(--text-muted)] font-mono">
                         {item.pos}

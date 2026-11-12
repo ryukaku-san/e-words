@@ -1,8 +1,8 @@
-export type CategoryType = 'all' | 'general_word' | 'tech_word' | 'idiom' | 'grammar';
+export type CategoryType = 'all' | 'general_word' | 'tech_word' | 'idiom' | 'grammar' | 'target1900';
 
 export interface LearningItem {
   id: string;
-  category: 'general_word' | 'tech_word' | 'idiom' | 'grammar';
+  category: 'general_word' | 'tech_word' | 'idiom' | 'grammar' | 'target1900';
   term: string; // 英語（単語・熟語・文法名）
   pos?: string; // 品詞 (n., v., adj., adv., n. phr. など)
   meaning: string; // 意味・ニュアンス

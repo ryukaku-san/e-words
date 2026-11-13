@@ -140,6 +140,16 @@ export const App: React.FC = () => {
     setProgress(updated);
   };
 
+  // 途中でやめた時のカレンダー記録（1問以上解いていれば、そこまでの分を残す）
+  const handleQuitSession = (correctCount: number, incorrectCount: number) => {
+    if (!activeSession) return;
+    if (correctCount + incorrectCount > 0) {
+      const updated = recordStudySession(correctCount, incorrectCount, activeSession.categoryTitle);
+      setProgress(updated);
+    }
+    setActiveSession(null);
+  };
+
   // トップページ（教材選択）
   if (page === 'top') {
     return (
@@ -180,6 +190,7 @@ export const App: React.FC = () => {
             direction={activeSession.direction}
             onToggleBookmark={handleToggleBookmark}
             onFinishSession={handleFinishSession}
+            onQuitSession={handleQuitSession}
             onBackToHome={() => setActiveSession(null)}
           />
         ) : (

@@ -4,6 +4,8 @@ export interface DayStudyRecord {
   correctCount: number;
   incorrectCount: number;
   categories: string[];
+  // カテゴリ別の内訳（範囲カードの最終学習日・正解率表示用。旧データには無い）
+  categoryStats?: Record<string, { correct: number; incorrect: number }>;
 }
 
 export interface UserProgress {
@@ -70,12 +72,21 @@ export function recordStudySession(
 
   const updatedCategories = Array.from(new Set([...prevRecord.categories, category]));
 
+  const prevCatStat = prevRecord.categoryStats?.[category] || { correct: 0, incorrect: 0 };
+
   progress.history[today] = {
     date: today,
     totalAnswered: prevRecord.totalAnswered + correctCount + incorrectCount,
     correctCount: prevRecord.correctCount + correctCount,
     incorrectCount: prevRecord.incorrectCount + incorrectCount,
     categories: updatedCategories,
+    categoryStats: {
+      ...(prevRecord.categoryStats || {}),
+      [category]: {
+        correct: prevCatStat.correct + correctCount,
+        incorrect: prevCatStat.incorrect + incorrectCount,
+      },
+    },
   };
 
   // ストリーク（連続日数）の計算

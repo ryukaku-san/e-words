@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Star, Shuffle, ArrowRightLeft, Play } from 'lucide-react';
 import { TARGET1900_ITEMS } from '../data/target1900';
 
-export const TARGET_RANGE_SIZE = 100;
+export const TARGET_RANGE_SIZE = 20;
 
 export interface TargetRange {
   startNo: number; // 1始まり
@@ -20,6 +20,11 @@ export const TARGET_RANGES: TargetRange[] = (() => {
   return ranges;
 })();
 
+export interface RangeStat {
+  lastDate: string; // "YYYY-MM-DD"（その範囲を最後に学習した日）
+  accuracy: number; // その日の正解率（0-100）
+}
+
 interface TargetRangeSelectProps {
   onStartRange: (
     range: TargetRange | null, // null = ブックマークのみ
@@ -28,6 +33,7 @@ interface TargetRangeSelectProps {
     bookmarkOnly: boolean
   ) => void;
   bookmarkCount: number; // ターゲット1900内のブックマーク数
+  rangeStats?: Record<string, RangeStat>; // カテゴリ名（ターゲット1900 No.x–y）→ 最終学習日と正解率
 }
 
 interface RangeOption {
@@ -38,6 +44,7 @@ interface RangeOption {
 export const TargetRangeSelect: React.FC<TargetRangeSelectProps> = ({
   onStartRange,
   bookmarkCount,
+  rangeStats,
 }) => {
   const [options, setOptions] = useState<Record<string, RangeOption>>({});
 
@@ -130,6 +137,16 @@ export const TargetRangeSelect: React.FC<TargetRangeSelectProps> = ({
                   <div className="text-[11px] text-[var(--text-muted)]">
                     {range.endNo - range.startNo + 1} 問
                   </div>
+                  {(() => {
+                    const stat = rangeStats?.[`ターゲット1900 No.${range.startNo}–${range.endNo}`];
+                    if (!stat) return null;
+                    const [, m, d] = stat.lastDate.split('-');
+                    return (
+                      <div className="text-[11px] text-[var(--text-muted)]">
+                        最終 {Number(m)}/{Number(d)} ・ 正解率 {stat.accuracy}%
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
 

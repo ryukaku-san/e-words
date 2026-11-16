@@ -134,19 +134,20 @@ export const TargetRangeSelect: React.FC<TargetRangeSelectProps> = ({
                   <div className="font-bold text-sm text-[var(--text-main)] truncate">
                     No.{range.startNo}〜{range.endNo}
                   </div>
-                  <div className="text-[11px] text-[var(--text-muted)]">
+                  <div className="text-[11px] text-[var(--text-muted)] whitespace-nowrap">
                     {range.endNo - range.startNo + 1} 問
+                    {(() => {
+                      const stat = rangeStats?.[`ターゲット1900 No.${range.startNo}–${range.endNo}`];
+                      if (!stat) return null;
+                      const [, m, d] = stat.lastDate.split('-');
+                      return (
+                        <span>
+                          {' '}
+                          ・ 最終 {Number(m)}/{Number(d)} ({stat.accuracy}%)
+                        </span>
+                      );
+                    })()}
                   </div>
-                  {(() => {
-                    const stat = rangeStats?.[`ターゲット1900 No.${range.startNo}–${range.endNo}`];
-                    if (!stat) return null;
-                    const [, m, d] = stat.lastDate.split('-');
-                    return (
-                      <div className="text-[11px] text-[var(--text-muted)]">
-                        最終 {Number(m)}/{Number(d)} ・ 正解率 {stat.accuracy}%
-                      </div>
-                    );
-                  })()}
                 </div>
               </div>
 

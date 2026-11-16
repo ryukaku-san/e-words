@@ -133,6 +133,23 @@ export const App: React.FC = () => {
     progress.bookmarks.includes(item.id)
   ).length;
 
+  // 範囲ごとの最終学習日と、その日の正解率（範囲カード表示用）
+  const rangeStats: Record<string, { lastDate: string; accuracy: number }> = {};
+  for (const record of Object.values(progress.history)) {
+    if (!record.categoryStats) continue;
+    for (const [category, stat] of Object.entries(record.categoryStats)) {
+      const total = stat.correct + stat.incorrect;
+      if (total === 0) continue;
+      const current = rangeStats[category];
+      if (!current || record.date > current.lastDate) {
+        rangeStats[category] = {
+          lastDate: record.date,
+          accuracy: Math.round((stat.correct / total) * 100),
+        };
+      }
+    }
+  }
+
   // セッション完了時のカレンダー記録
   const handleFinishSession = (correctCount: number, incorrectCount: number) => {
     if (!activeSession) return;
@@ -200,6 +217,7 @@ export const App: React.FC = () => {
                 <TargetRangeSelect
                   onStartRange={handleStartTargetRange}
                   bookmarkCount={targetBookmarkCount}
+                  rangeStats={rangeStats}
                 />
               ) : (
                 <CategorySelect

@@ -323,16 +323,20 @@ export const StudySession: React.FC<StudySessionProps> = ({
               <Layers className="w-4 h-4" />
               <span>
                 {direction === 'en-ja'
-                  ? currentItem.etymology
-                    ? 'タップで意味と語源を表示'
-                    : currentItem.usage
-                      ? 'タップで意味と例文を表示'
-                      : 'タップで意味を表示'
-                  : currentItem.etymology
-                    ? 'タップで正解の英語と語源を表示'
-                    : currentItem.usage
-                      ? 'タップで正解の英語と例文を表示'
-                      : 'タップで正解の英語を表示'}
+                  ? currentItem.etymology && currentItem.usage
+                    ? 'タップで意味・語源・例文を表示'
+                    : currentItem.etymology
+                      ? 'タップで意味と語源を表示'
+                      : currentItem.usage
+                        ? 'タップで意味と例文を表示'
+                        : 'タップで意味を表示'
+                  : currentItem.etymology && currentItem.usage
+                    ? 'タップで正解の英語・語源・例文を表示'
+                    : currentItem.etymology
+                      ? 'タップで正解の英語と語源を表示'
+                      : currentItem.usage
+                        ? 'タップで正解の英語と例文を表示'
+                        : 'タップで正解の英語を表示'}
               </span>
             </div>
           )}

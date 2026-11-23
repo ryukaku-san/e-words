@@ -13,6 +13,28 @@
     background-color: #f8fafc;
     color: #0f172a;
   }
+
+  /* Top-layer <dialog> scroll containment & backdrop */
+  dialog:not([open]) {
+    display: none;
+  }
+
+  dialog:modal {
+    overscroll-behavior: contain;
+    margin: auto;
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+  }
+
+  dialog::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(6px);
+  }
 }
 
 /* シンプルで洗練されたカラー定義（白・スレートグレー・清潔なブルー） */
@@ -38,4 +60,133 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Badge celebration & inspection animations (compositor-only, reduced-motion safe) */
+@keyframes badge-coin-enter {
+  0% {
+    opacity: 0;
+    transform: perspective(800px) rotateY(-540deg) scale(0.35);
+  }
+  65% {
+    opacity: 1;
+    transform: perspective(800px) rotateY(16deg) scale(1.08);
+  }
+  85% {
+    transform: perspective(800px) rotateY(-6deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes badge-coin-replay {
+  0% {
+    transform: perspective(800px) rotateY(0deg) scale(1);
+  }
+  45% {
+    transform: perspective(800px) rotateY(180deg) scale(1.1);
+  }
+  100% {
+    transform: perspective(800px) rotateY(360deg) scale(1);
+  }
+}
+
+@keyframes badge-shine-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(190px);
+  }
+}
+
+@keyframes badge-halo-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  40% {
+    opacity: 0.9;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+}
+
+@keyframes badge-sunburst-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(0deg);
+  }
+  30% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes badge-text-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge-coin-enter,
+.badge-coin-replay,
+.badge-text-rise {
+  opacity: 1;
+}
+
+/* Reduced-motion時は斜め光沢帯を非表示にし、静止帯が残らないようにする */
+.badge-shine-sweep {
+  opacity: 0;
+}
+
+.badge-sunburst-enter {
+  opacity: 0.35;
+}
+
+.badge-halo-burst {
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .badge-coin-enter {
+    animation: badge-coin-enter 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .badge-coin-replay {
+    animation: badge-coin-replay 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .badge-shine-sweep {
+    opacity: 1;
+    animation: badge-shine-sweep 0.85s ease-out 0.35s both;
+  }
+  .badge-halo-burst {
+    animation: badge-halo-burst 1s ease-out both;
+  }
+  .badge-sunburst-enter {
+    animation: badge-sunburst-enter 1.4s ease-out both;
+  }
+  .badge-text-rise {
+    animation: badge-text-rise 0.45s ease-out 0.25s both;
+  }
 }

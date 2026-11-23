@@ -16,9 +16,10 @@ const FILTER_CHIPS: { id: CategoryType; label: string }[] = [
 interface WordListProps {
   bookmarks: string[];
   onToggleBookmark: (id: string) => void;
+  onAudioPlay?: () => void;
 }
 
-export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark }) => {
+export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark, onAudioPlay }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -115,6 +116,7 @@ export const WordList: React.FC<WordListProps> = ({ bookmarks, onToggleBookmark 
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
+                      onAudioPlay?.();
                       speakEnglish(item.term);
                     }}
                     className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--primary)] hover:bg-[var(--bg-muted)] transition cursor-pointer"

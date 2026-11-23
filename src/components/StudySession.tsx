@@ -1,18 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { Volume2, RotateCcw, Check, X, Star, Sparkles, ArrowRight, Layers } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Volume2, RotateCcw, Check, X, Star, Sparkles, ArrowRight, Layers, Award } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import type { LearningItem } from '../data/learningItems';
+import type { BadgeDefinition } from '../data/badges';
 import { speakEnglish } from '../utils/speech';
+import { unlockAudioContext } from '../utils/sound';
+import { BadgeGraphic } from './BadgeGraphic';
+
+export interface SessionCompletionStats {
+  answerLog: boolean[];
+  round1IncorrectCount: number;
+}
 
 interface StudySessionProps {
   items: LearningItem[];
   categoryTitle: string;
   bookmarks: string[];
   onToggleBookmark: (id: string) => void;
-  onFinishSession: (correctCount: number, incorrectCount: number) => void;
-  onQuitSession: (correctCount: number, incorrectCount: number) => void;
+  onAudioPlay?: () => void;
+  onFinishSession: (correctCount: number, incorrectCount: number, stats: SessionCompletionStats) => void;
+  onQuitSession: (correctCount: number, incorrectCount: number, stats: SessionCompletionStats) => void;
   onBackToHome: () => void;
   direction?: 'en-ja' | 'ja-en';
+  sessionUnlockedBadges?: BadgeDefinition[];
+  onInspectBadge?: (badge: BadgeDefinition) => void;
 }
 
 export const StudySession: React.FC<StudySessionProps> = ({
@@ -20,10 +31,13 @@ export const StudySession: React.FC<StudySessionProps> = ({
   categoryTitle,
   bookmarks,
   onToggleBookmark,
+  onAudioPlay,
   onFinishSession,
   onQuitSession,
   onBackToHome,
   direction = 'en-ja',
+  sessionUnlockedBadges = [],
+  onInspectBadge,
 }) => {
   const CHUNK_SIZE = 10;
   const totalChunks = Math.ceil(items.length / CHUNK_SIZE);
@@ -48,6 +62,10 @@ export const StudySession: React.FC<StudySessionProps> = ({
   // 完了フラグ
   const [isFinished, setIsFinished] = useState(false);
 
+  const answerLogRef = useRef<boolean[]>([]);
+  const round1IncorrectRef = useRef<number>(0);
+  const isFinishedRef = useRef<boolean>(false);
+
   const currentItem = currentRoundItems[currentIndex];
   const isBookmarked = currentItem ? bookmarks.includes(currentItem.id) : false;
 
@@ -57,6 +75,8 @@ export const StudySession: React.FC<StudySessionProps> = ({
 
   const handlePlayVoice = (text: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    unlockAudioContext();
+    onAudioPlay?.();
     setIsPlayingAudio(true);
     speakEnglish(text, () => {
       setIsPlayingAudio(false);
@@ -64,10 +84,15 @@ export const StudySession: React.FC<StudySessionProps> = ({
   };
 
   const handleAnswer = (isCorrect: boolean) => {
-    if (!currentItem) return;
+    if (!currentItem || isFinishedRef.current) return;
+    unlockAudioContext();
 
+    answerLogRef.current.push(isCorrect);
     if (!isReviewRound) {
       setWordResults((prev) => ({ ...prev, [currentItem.id]: isCorrect }));
+      if (!isCorrect) {
+        round1IncorrectRef.current += 1;
+      }
     }
 
     if (isCorrect) {
@@ -113,6 +138,8 @@ export const StudySession: React.FC<StudySessionProps> = ({
   };
 
   const finishSession = (finalCorrect: number, finalIncorrect: number) => {
+    if (isFinishedRef.current) return;
+    isFinishedRef.current = true;
     setIsFinished(true);
     try {
       confetti({
@@ -123,7 +150,10 @@ export const StudySession: React.FC<StudySessionProps> = ({
     } catch {
       // ignore
     }
-    onFinishSession(finalCorrect, finalIncorrect);
+    onFinishSession(finalCorrect, finalIncorrect, {
+      answerLog: [...answerLogRef.current],
+      round1IncorrectCount: round1IncorrectRef.current,
+    });
   };
 
   if (isFinished) {
@@ -155,6 +185,28 @@ export const StudySession: React.FC<StudySessionProps> = ({
             <div className="text-2xl font-bold text-[var(--primary)]">{accuracy}%</div>
           </div>
         </div>
+
+        {sessionUnlockedBadges.length > 0 && (
+          <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-left space-y-2">
+            <div className="flex items-center gap-1.5 text-xs font-extrabold text-amber-900">
+              <Award className="w-4 h-4 text-amber-600" />
+              <span>今回獲得したバッジ（{sessionUnlockedBadges.length}）</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {sessionUnlockedBadges.map((badge) => (
+                <button
+                  key={badge.id}
+                  type="button"
+                  onClick={() => onInspectBadge?.(badge)}
+                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-amber-200 hover:border-amber-400 transition cursor-pointer shadow-xs"
+                >
+                  <BadgeGraphic badge={badge} size={32} />
+                  <span className="text-xs font-bold text-[var(--text-main)]">{badge.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="text-left space-y-2 max-h-60 overflow-y-auto pr-2 rounded-xl bg-white/50 p-2">
           {items.map((item) => {
@@ -232,7 +284,14 @@ export const StudySession: React.FC<StudySessionProps> = ({
             </span>
             <button
               type="button"
-              onClick={() => onQuitSession(totalCorrect, totalIncorrect)}
+              onClick={() => {
+                if (isFinishedRef.current) return;
+                isFinishedRef.current = true;
+                onQuitSession(totalCorrect, totalIncorrect, {
+                  answerLog: [...answerLogRef.current],
+                  round1IncorrectCount: round1IncorrectRef.current,
+                });
+              }}
               className="flex items-center gap-0.5 px-2 py-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] text-[11px] font-bold text-[var(--text-muted)] hover:text-red-500 hover:border-red-200 transition cursor-pointer"
               title="学習を途中でやめる（ここまでの記録はカレンダーに残ります）"
             >
